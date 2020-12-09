@@ -1,9 +1,9 @@
-Type=main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Boots
-baseDamageReduction=1.0
+Type=main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Helmet
+baseDamageReduction=0.0
 totalHealthModifier=0.0
-Slot=FEET
+Slot=HEAD
 baseDamageModifier=1.0
 totalDamageReductionModifier=0.0
 baseHealthModifier=1.0
 totalDamageModifier=0.0
-Name=Iron Boots
+Name=Test Helmet

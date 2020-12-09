@@ -1,0 +1,10 @@
+Type=main.java.pie.ilikepiefoo2.rpgarcade.entity.Human
+CurrentHealth=100.0
+Level=1
+BaseDamage=10.0
+BaseHealth=100.0
+Name=Little Man
+Equipment=Iron_Helmet
+Equipment=Iron_Chestplate
+Equipment=Iron_Leggings
+Equipment=Iron_Boots

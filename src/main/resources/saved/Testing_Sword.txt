@@ -1,0 +1,11 @@
+Type=main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Sword
+TestKey=0.2478578851542016
+baseDamageReduction=0.0
+totalHealthModifier=0.0
+Slot=HANDS
+baseDamageModifier=1.0
+totalDamageReductionModifier=0.0
+baseHealthModifier=1.0
+ExampleKey=This can hold extra info, like descriptions?
+totalDamageModifier=0.0
+Name=Testing Sword

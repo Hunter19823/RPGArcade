@@ -12,11 +12,13 @@ import main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Sword;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.Properties;
 
+import java.io.FileNotFoundException;
+
 /**
  * Driver Class/Testing Class
  */
 public class RPGArcade {
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException
     {
         //Human player = Human.load("src/main/resources/saved/pie.txt");
         //new Sword("Pie's Epic Sword").setBaseHealthModifier(1);
@@ -32,7 +34,15 @@ public class RPGArcade {
         properties.put("Type", Sword.class.getName());
 
          */
-        System.out.println(new Helmet("Test Helmet").getSavingFormat());
+        Sword sword = (Sword) Sword.load("Testing Sword");
+        System.out.println(sword.getProperty("ExampleKey"));
+        System.out.println(sword.getSavingFormat());
+        sword.setProperty("ExampleKey","This can hold extra info, like descriptions?");
+        System.out.println(sword.getProperty("ExampleKey"));
+        System.out.println(sword.getSavingFormat());
+        System.out.println(sword.removeProperty("ExampleKey"));
+        System.out.println(sword.getSavingFormat());
+        System.out.println(sword.getProperty("ExampleKey"));
 
     }
 
@@ -55,7 +65,7 @@ public class RPGArcade {
      *
      * @param entity
      */
-    public static void equipIronArmor(Entity entity)
+    public static Entity equipIronArmor(Entity entity)
     {
         Helmet helmet = new Helmet("Iron Helmet");
         Chestplate chestplate = new Chestplate("Iron Chestplate");
@@ -69,6 +79,7 @@ public class RPGArcade {
         entity.equip(chestplate);
         entity.equip(leggings);
         entity.equip(boots);
+        return entity;
     }
 
     /**

@@ -319,6 +319,32 @@ public abstract class StatModifier {
         return SAVE_LOCATION+ConfigManager.getSafeName(name)+".txt";
     }
 
+    public Object getProperty(String key)
+    {
+        return properties.get(key);
+    }
+
+    public void setProperty(String key, Object property)
+    {
+        properties.put(key,property);
+        save();
+    }
+
+    public Object removeProperty(String key)
+    {
+        return properties.remove(key);
+    }
+
+    public static StatModifier load(String equipmentName)
+    {
+        try {
+            return loadStatModifiers(equipmentName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Load an equipment from the name of
      * the equipment.
@@ -334,7 +360,7 @@ public abstract class StatModifier {
 
         StatModifier stat = null;
 
-        String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")-1).split("=");
+        String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")).split("=");
 
         if(components[0].equals("Type")) {
             for(Weapon weapon : Weapon.values()){
@@ -403,6 +429,9 @@ public abstract class StatModifier {
                     break;
                 case "totalDamageReductionModifier":
                     stat.setTotalDamageReductionModifier(Double.parseDouble(components[1]));
+                    break;
+                default:
+                    stat.properties.put(components[0],components[1]);
                     break;
             }
         }

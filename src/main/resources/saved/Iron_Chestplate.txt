@@ -1,9 +1,9 @@
 Type=main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Chestplate
-Name=Iron Chestplate
+baseDamageReduction=3.0
+totalHealthModifier=0.0
 Slot=CHEST
-baseHealthModifier=1.000000
-baseDamageModifier=1.000000
-baseDamageReduction=3.000000
-totalDamageModifier=0.000000
-totalHealthModifier=0.000000
-totalDamageReductionModifier=0.000000
+baseDamageModifier=1.0
+totalDamageReductionModifier=0.0
+baseHealthModifier=1.0
+totalDamageModifier=0.0
+Name=Iron Chestplate

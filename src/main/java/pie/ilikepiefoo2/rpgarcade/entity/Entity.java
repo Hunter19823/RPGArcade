@@ -5,6 +5,7 @@ import main.java.pie.ilikepiefoo2.rpgarcade.equipment.StatModifier;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigException;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigManager;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Properties;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -17,12 +18,23 @@ public abstract class Entity {
     public static final String SAVE_LOCATION = "src/main/resources/saved/";
 
     // Protected Fields used by all entities.
+    protected Properties properties = new Properties();
+    {
+        properties.put("Name","Default");
+        properties.put("BaseHealth",100.0);
+        properties.put("CurrentHealth",properties.get("BaseHealth"));
+        properties.put("BaseDamage",10.0);
+        properties.put("Level",1);
 
+    }
+    /*
     protected String name = "Default";
     protected double baseHealth = 100;
     protected double currentHealth = baseHealth;
     protected double baseDamage = 10;
     protected int level = 1;
+
+     */
 
     // All entities have an Equipment.
     protected final Equipment equipment = new Equipment();
@@ -33,7 +45,9 @@ public abstract class Entity {
      * 1. Something has been equipped.
      * 2. Entity has leveled up.
      */
-    public Entity(){}
+    public Entity(){
+        properties.put("Type",this.getClass().getName());
+    }
 
     /**
      * Auto-Loaded Constructor.
@@ -44,7 +58,8 @@ public abstract class Entity {
      */
     public Entity(String name)
     {
-        this.name = name;
+        properties.put("Type",this.getClass().getName());
+        setName(name);
         quickLoad();
     }
 
@@ -55,7 +70,7 @@ public abstract class Entity {
      */
     public String getName()
     {
-        return name;
+        return (String) properties.get("Name");
     }
 
     /**
@@ -65,7 +80,7 @@ public abstract class Entity {
      */
     public void setName(String name)
     {
-        this.name = name;
+        properties.put("Name",name);
     }
 
     /**
@@ -75,7 +90,7 @@ public abstract class Entity {
      */
     public int getLevel()
     {
-        return level;
+        return (int) properties.get("Level");
     }
 
     /**
@@ -85,7 +100,7 @@ public abstract class Entity {
      */
     public void setLevel(int level)
     {
-        this.level = level;
+        properties.put("Level",level);
     }
 
     /**
@@ -95,9 +110,9 @@ public abstract class Entity {
      */
     private void levelUp()
     {
-        this.level++;
-        this.baseHealth += level * Math.random() * 10;
-        this.baseDamage += level * Math.random() * 7.5;
+        properties.put("Level",(int)properties.get("Level")+1);
+        setBaseHealth(getLevel() * Math.random() * 10);
+        setBaseDamage(getLevel() * Math.random() * 7.5);
         save();
     }
 
@@ -119,7 +134,7 @@ public abstract class Entity {
      */
     public double getBaseHealth()
     {
-        return baseHealth;
+        return (double) properties.get("BaseHealth");
     }
 
     /**
@@ -130,7 +145,7 @@ public abstract class Entity {
     public void setBaseHealth(double baseHealth)
     {
         if(baseHealth>0)
-            this.baseHealth = baseHealth;
+            this.properties.put("BaseHealth",baseHealth);
     }
 
 
@@ -144,9 +159,7 @@ public abstract class Entity {
      */
     public double getCurrentHealth()
     {
-        if(this.currentHealth > getMaxHealth())
-            this.currentHealth = getMaxHealth();
-        return this.currentHealth;
+        return (double) this.properties.get("CurrentHealth");
     }
 
     /**
@@ -156,7 +169,7 @@ public abstract class Entity {
      */
     public void setCurrentHealth(double currentHealth)
     {
-        this.currentHealth = currentHealth;
+        this.properties.put("CurrentHealth",currentHealth);
     }
 
     /**
@@ -165,7 +178,7 @@ public abstract class Entity {
     public void heal()
     {
         setCurrentHealth(getMaxHealth());
-        Chat.CHAT.printf("%s's wounds have been completely erased.%n", name);
+        Chat.CHAT.printf("%s's wounds have been completely erased.%n", getName());
     }
 
     /**
@@ -196,7 +209,7 @@ public abstract class Entity {
      */
     public double getBaseDamage()
     {
-        return baseDamage;
+        return (double) properties.get("BaseDamage");
     }
 
     /**
@@ -206,7 +219,7 @@ public abstract class Entity {
      */
     public void setBaseDamage(double baseDamage)
     {
-        this.baseDamage = baseDamage;
+        this.properties.put("BaseDamage",baseDamage);
     }
 
     /**
@@ -255,9 +268,9 @@ public abstract class Entity {
     {
         StatModifier replacement = this.equipment.equip(equipment, equipment.getSlot());
         if (replacement != null) {
-            Chat.CHAT.printf("%s has swapped out their \"%s\" for the \"%s\".%n", this.name, replacement.getName(), equipment.getName());
+            Chat.CHAT.printf("%s has swapped out their \"%s\" for the \"%s\".%n", getName(), replacement.getName(), equipment.getName());
         } else {
-            Chat.CHAT.printf("%s has equipped their \"%s\"%n", this.name, equipment.getName());
+            Chat.CHAT.printf("%s has equipped their \"%s\"%n", getName(), equipment.getName());
         }
         save();
         return replacement;
@@ -294,14 +307,14 @@ public abstract class Entity {
     {
         double reduction = this.getTotalDamageReduction();
         damage = reduction >= damage ? 0 : damage-reduction;
-        currentHealth -= damage;
+        setCurrentHealth(getCurrentHealth() - damage);
         StatModifier weapon = attacker.getWeapon();
         if(damage <= 0){
-            Chat.CHAT.printf("%s attacked %s with their %s but their attack was not strong enough! Remaining HP: %,.2f%n", attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), getCurrentHealth());
+            Chat.CHAT.printf("%s attacked %s with their %s but their attack was not strong enough! Remaining HP: %,.2f%n", attacker.getName(), this.getName(), weapon == null ? "fists" : weapon.getName(), getCurrentHealth());
         }else {
-            Chat.CHAT.printf("%s attacked %s with their %s for a total of %,.2f damage! Remaining HP: %,.2f%n", attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), damage, getCurrentHealth());
+            Chat.CHAT.printf("%s attacked %s with their %s for a total of %,.2f damage! Remaining HP: %,.2f%n", attacker.getName(), this.getName(), weapon == null ? "fists" : weapon.getName(), damage, getCurrentHealth());
         }
-        return currentHealth;
+        return getCurrentHealth();
     }
 
     /**
@@ -336,6 +349,32 @@ public abstract class Entity {
         loadEntity(toolDetails,ent);
 
         return ent;
+    }
+
+    public Object getProperty(String key)
+    {
+        return properties.get(key);
+    }
+
+    public void setProperty(String key, Object property)
+    {
+        properties.put(key,property);
+        save();
+    }
+
+    public Object removeProperty(String key)
+    {
+        return properties.remove(key);
+    }
+
+    public static Entity load(String entityName)
+    {
+        try {
+            return loadEntity(entityName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -381,6 +420,9 @@ public abstract class Entity {
                         Chat.CHAT.println("Error trying to load equipment by the name of: \""+components[1]+"\". File does not exist.");
                     }
                     break;
+                default:
+                    entity.properties.put(components[0],components[1]);
+                    break;
             }
         }
         return entity;
@@ -405,19 +447,7 @@ public abstract class Entity {
      */
     public String getSavingFormat()
     {
-        return String.format(
-                "Type=%s%n" +
-                        "Name=%s%n" +
-                        "Level=%d%n" +
-                        "BaseHealth=%f%n" +
-                        "BaseDamage=%f%n" +
-                        "CurrentHealth=%f%n",
-                this.getClass().getName(),
-                this.name,
-                this.level,
-                this.baseHealth,
-                this.baseDamage,
-                this.currentHealth)+equipment.getSavingFormat();
+        return properties.toSavingFormat()+equipment.getSavingFormat();
     }
 
     /**
@@ -438,7 +468,7 @@ public abstract class Entity {
      */
     public void save()
     {
-        saveToFile(getSaveLocation(name));
+        saveToFile(getSaveLocation(getName()));
     }
 
     /**
@@ -457,10 +487,10 @@ public abstract class Entity {
     protected void quickLoad()
     {
         try{
-            loadEntity(ConfigManager.loadFile(getSaveLocation(this.name)), this);
+            loadEntity(ConfigManager.loadFile(getSaveLocation(this.getName())), this);
         }catch(FileNotFoundException e)
         {
-            Chat.CHAT.println("Could not find \""+name+"\". Now saving for future use.");
+            Chat.CHAT.println("Could not find \""+getName()+"\". Now saving for future use.");
             save();
         }
     }
@@ -473,7 +503,7 @@ public abstract class Entity {
      */
     public String toString()
     {
-        return String.format("%s (%dL)",name,level);
+        return String.format("%s (%dL)",getName(),getLevel());
     }
 
     /**
@@ -490,11 +520,11 @@ public abstract class Entity {
                 "Health: %,.2f / %,.2f%n"+
                 "Damage: %,.2f to %,.2f%n"+
                 "Armor: %,.2f%n",
-                name,
-                level,
+                getName(),
+                getLevel(),
                 getCurrentHealth(),
                 getMaxHealth(),
-                baseDamage,
+                getBaseDamage(),
                 getMaxDamage(),
                 getTotalDamageReduction());
     }
@@ -513,11 +543,11 @@ public abstract class Entity {
                         "Health: %,.2f / %,.2f%n"+
                         "Damage: %,.2f to %,.2f%n"+
                         "Armor: %,.2f%n%s",
-                name,
-                level,
+                getName(),
+                getLevel(),
                 getCurrentHealth(),
                 getMaxHealth(),
-                baseDamage,
+                getBaseDamage(),
                 getMaxDamage(),
                 getTotalDamageReduction(),
                 equipment.getEquipmentStats());
