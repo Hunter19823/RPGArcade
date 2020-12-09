@@ -2,7 +2,7 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapons;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
@@ -139,7 +139,7 @@ public abstract class StatModifier {
         String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")).split("=");
 
         if(components[0].equals("Type")) {
-            if(components[1].equals(Weapons.SWORD.CLASS_NAME))
+            if(components[1].equals(Weapon.SWORD.CLASS_NAME))
             {
                 stat = new Sword();
             }
@@ -149,7 +149,7 @@ public abstract class StatModifier {
         }
 
         loadStatModifiers(toolDetails,stat);
-        
+
         return stat;
     }
 

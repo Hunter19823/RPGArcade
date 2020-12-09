@@ -1,20 +1,20 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons;
 
-public enum Weapons {
+public enum Weapon {
     SWORD(Sword.class);
 
     public final String CLASS_NAME;
 
-    Weapons(Class clazz){
+    Weapon(Class clazz){
         this.CLASS_NAME = clazz.toString();
     }
-    Weapons(String CLASS_NAME){
+    Weapon(String CLASS_NAME){
         this.CLASS_NAME = CLASS_NAME;
     }
 
     public static boolean isWeapon(String className)
     {
-        for(Weapons weapons : Weapons.values())
+        for(Weapon weapons : Weapon.values())
         {
             if(className.equals(weapons.CLASS_NAME)){
                 return true;
