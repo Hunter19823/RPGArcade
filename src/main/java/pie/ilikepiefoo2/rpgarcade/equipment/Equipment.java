@@ -243,7 +243,7 @@ public class Equipment{
         for(int i=0; i<EQUIPMENT.length; i++)
         {
             if(EQUIPMENT[i] != null)
-                Chat.CHAT.printf("%s has been stripped of their %s (%s)%n",entity.getName(),EQUIPMENT[i].slot.NAME, EQUIPMENT[i].name);
+                Chat.CHAT.printf("%s has been stripped of their %s (%s)%n",entity.getName(),EQUIPMENT[i].getSlot().NAME, EQUIPMENT[i].getName());
             EQUIPMENT[i] = null;
         }
     }
@@ -258,9 +258,9 @@ public class Equipment{
     {
         String output = "";
         for(StatModifier stat : EQUIPMENT)
-            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.name));
+            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.getName()));
         for(StatModifier stat : PASSIVE)
-            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.name));
+            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.getName()));
         return output;
     }
 

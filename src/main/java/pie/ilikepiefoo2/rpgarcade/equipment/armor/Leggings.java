@@ -14,7 +14,7 @@ public class Leggings extends StatModifier {
      */
     public Leggings()
     {
-        this.slot = Slot.LEGS;
+        setSlot(Slot.LEGS);
     }
 
     /**
@@ -26,7 +26,6 @@ public class Leggings extends StatModifier {
      */
     public Leggings(String name)
     {
-        super(name);
-        this.slot = Slot.LEGS;
+        super(name,Slot.LEGS);
     }
 }

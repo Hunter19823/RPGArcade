@@ -3,11 +3,14 @@ package main.java.pie.ilikepiefoo2.rpgarcade;
 
 import main.java.pie.ilikepiefoo2.rpgarcade.entity.Entity;
 import main.java.pie.ilikepiefoo2.rpgarcade.entity.Human;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.Slot;
 import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Boots;
 import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Chestplate;
 import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Helmet;
 import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Leggings;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Sword;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Properties;
 
 /**
  * Driver Class/Testing Class
@@ -17,9 +20,19 @@ public class RPGArcade {
     {
         //Human player = Human.load("src/main/resources/saved/pie.txt");
         //new Sword("Pie's Epic Sword").setBaseHealthModifier(1);
-        Human player = new Human("Pie");
-        player.displayFullStats();
+        /*
+        Properties properties = new Properties();
+        properties.put("Name","Test");
+        properties.put("Slot", Slot.HANDS);
+        properties.put("baseHealthModifier",2.0);
+        properties.put("baseDamageModifier",2.0);
+        properties.put("totalDamageModifier",2.0);
+        properties.put("totalHealthModifier",2.0);
+        properties.put("totalDamageReductionModifier",2.0);
+        properties.put("Type", Sword.class.getName());
 
+         */
+        System.out.println(new Helmet("Test Helmet").getSavingFormat());
 
     }
 

@@ -16,7 +16,7 @@ public class Sword extends StatModifier {
      */
     public Sword()
     {
-        this.slot = Slot.HANDS;
+        setSlot(Slot.HANDS);
     }
 
     /**
@@ -28,7 +28,6 @@ public class Sword extends StatModifier {
      */
     public Sword(String name)
     {
-        super(name);
-        this.slot = Slot.HANDS;
+        super(name,Slot.HANDS);
     }
 }

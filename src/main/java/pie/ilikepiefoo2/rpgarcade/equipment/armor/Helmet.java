@@ -14,7 +14,7 @@ public class Helmet extends StatModifier {
      */
     public Helmet()
     {
-        this.slot = Slot.HEAD;
+        setSlot(Slot.HEAD);
     }
 
     /**
@@ -26,7 +26,6 @@ public class Helmet extends StatModifier {
      */
     public Helmet(String name)
     {
-        super(name);
-        this.slot = Slot.HEAD;
+        super(name,Slot.HEAD);
     }
 }

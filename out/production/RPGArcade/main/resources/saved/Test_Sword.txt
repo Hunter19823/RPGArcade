@@ -1,0 +1,9 @@
+Type=main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Sword
+baseDamageReduction=0.0
+totalHealthModifier=0.0
+Slot=HANDS
+baseDamageModifier=1.0
+totalDamageReductionModifier=0.0
+baseHealthModifier=1.0
+totalDamageModifier=0.0
+Name=Test Sword

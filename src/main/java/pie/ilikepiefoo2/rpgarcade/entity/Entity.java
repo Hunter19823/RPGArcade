@@ -7,7 +7,6 @@ import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigException;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigManager;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 /**
@@ -18,6 +17,7 @@ public abstract class Entity {
     public static final String SAVE_LOCATION = "src/main/resources/saved/";
 
     // Protected Fields used by all entities.
+
     protected String name = "Default";
     protected double baseHealth = 100;
     protected double currentHealth = baseHealth;
@@ -61,7 +61,7 @@ public abstract class Entity {
     /**
      * Set the name of the Entity
      *
-     * @param name
+     * @param name Sets the name
      */
     public void setName(String name)
     {

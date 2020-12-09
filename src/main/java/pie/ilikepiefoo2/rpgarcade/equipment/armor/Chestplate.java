@@ -16,7 +16,7 @@ public class Chestplate extends StatModifier {
      */
     public Chestplate()
     {
-        this.slot = CHEST;
+        setSlot(CHEST);
     }
 
     /**
@@ -28,7 +28,6 @@ public class Chestplate extends StatModifier {
      */
     public Chestplate(String name)
     {
-        super(name);
-        this.slot = CHEST;
+        super(name,CHEST);
     }
 }

@@ -6,9 +6,9 @@ import main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Weapon;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigException;
 import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigManager;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Properties;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 /**
@@ -21,6 +21,19 @@ public abstract class StatModifier {
     public static final String SAVE_LOCATION="src/main/resources/saved/";
 
     // Protected fields used by all Equipment.
+    protected Properties properties = new Properties();
+    {
+        properties.put("Name","Default");
+        properties.put("Slot",null);
+        properties.put("baseHealthModifier",1.0);
+        properties.put("baseDamageModifier",1.0);
+        properties.put("baseDamageReduction",0.0);
+        properties.put("totalDamageModifier",0.0);
+        properties.put("totalHealthModifier",0.0);
+        properties.put("totalDamageReductionModifier",0.0);
+
+    }
+    /*
     protected String name = "Default";
     protected Slot slot = null;
     protected double baseHealthModifier = 1;
@@ -29,13 +42,16 @@ public abstract class StatModifier {
     protected double totalDamageModifier = 0;
     protected double totalHealthModifier = 0;
     protected double totalDamageReductionModifier = 0;
+     */
 
     /**
      * Manual Constructor.
      * Any setter methods called will save this
      * object.
      */
-    public StatModifier() { }
+    public StatModifier() {
+        properties.put("Type",this.getClass().getName());
+    }
 
     /**
      * Auto-Loaded Constructor.
@@ -44,9 +60,11 @@ public abstract class StatModifier {
      *             it will create one itself
      *             with it's given name.
      */
-    public StatModifier(String name)
+    public StatModifier(String name, Slot slot)
     {
-        this.name = name;
+        setName(name);
+        setSlot(slot);
+        properties.put("Type",this.getClass().getName());
         quickLoad();
     }
 
@@ -58,7 +76,7 @@ public abstract class StatModifier {
      */
     public double applyBaseDamageModifier(Entity attacker)
     {
-        return attacker.getBaseDamage()*baseDamageModifier - attacker.getBaseDamage();
+        return attacker.getBaseDamage()*getBaseDamageModifier() - attacker.getBaseDamage();
     }
 
     /**
@@ -69,7 +87,7 @@ public abstract class StatModifier {
      */
     public double applyBaseHealthModifier(Entity target)
     {
-        return target.getBaseHealth()*baseHealthModifier - target.getBaseHealth();
+        return target.getBaseHealth()*getBaseHealthModifier() - target.getBaseHealth();
     }
 
     /**
@@ -80,7 +98,7 @@ public abstract class StatModifier {
      */
     public double applyTotalDamageModifier(double totalDamage)
     {
-        return totalDamage * totalDamageModifier;
+        return totalDamage * getTotalDamageModifier();
     }
     /**
      * Calculates total health multipliers.
@@ -90,7 +108,7 @@ public abstract class StatModifier {
      */
     public double applyTotalHealthModifier(double totalHealth)
     {
-        return totalHealth * totalHealthModifier;
+        return totalHealth * getTotalHealthModifier();
     }
 
     /**
@@ -101,7 +119,7 @@ public abstract class StatModifier {
      */
     public double applyTotalDamageReductionModifier(double totalDamage)
     {
-        return totalDamage * totalDamageReductionModifier;
+        return totalDamage * getTotalDamageReductionModifier();
     }
 
     /**
@@ -111,7 +129,7 @@ public abstract class StatModifier {
      */
     public String getName()
     {
-        return name;
+        return (String) properties.get("Name");
     }
 
     /**
@@ -121,7 +139,7 @@ public abstract class StatModifier {
      */
     public void setName(String name)
     {
-        this.name = name;
+        properties.put("Name",name);
     }
 
     /**
@@ -131,7 +149,17 @@ public abstract class StatModifier {
      */
     public Slot getSlot()
     {
-        return slot;
+        return (Slot) properties.get("Slot");
+    }
+
+    /**
+     * Sets the slot.
+     *
+     * @param slot
+     */
+    public void setSlot(Slot slot)
+    {
+        properties.put("Slot",slot);
     }
 
     /**
@@ -141,7 +169,7 @@ public abstract class StatModifier {
      */
     public double getBaseHealthModifier()
     {
-        return baseHealthModifier;
+        return (double) properties.get("baseHealthModifier");
     }
 
     /**
@@ -152,7 +180,7 @@ public abstract class StatModifier {
      */
     public void setBaseHealthModifier(double baseHealthModifier)
     {
-        this.baseHealthModifier = baseHealthModifier;
+        properties.put("baseHealthModifier",baseHealthModifier);
         save();
     }
 
@@ -163,7 +191,7 @@ public abstract class StatModifier {
      */
     public double getBaseDamageModifier()
     {
-        return baseDamageModifier;
+        return (double) properties.get("baseDamageModifier");
     }
 
     /**
@@ -174,7 +202,7 @@ public abstract class StatModifier {
      */
     public void setBaseDamageModifier(double baseDamageModifier)
     {
-        this.baseDamageModifier = baseDamageModifier;
+        properties.put("baseDamageModifier",baseDamageModifier);
         save();
     }
 
@@ -185,7 +213,7 @@ public abstract class StatModifier {
      */
     public double getTotalDamageModifier()
     {
-        return totalDamageModifier;
+        return (double) properties.get("totalDamageModifier");
     }
 
     /**
@@ -196,7 +224,7 @@ public abstract class StatModifier {
      */
     public void setTotalDamageModifier(double totalDamageModifier)
     {
-        this.totalDamageModifier = totalDamageModifier;
+        properties.put("totalDamageModifier",totalDamageModifier);
         save();
     }
 
@@ -207,7 +235,7 @@ public abstract class StatModifier {
      */
     public double getBaseDamageReduction()
     {
-        return baseDamageReduction;
+        return (double) properties.get("baseDamageReduction");
     }
 
     /**
@@ -218,7 +246,7 @@ public abstract class StatModifier {
      */
     public void setBaseDamageReduction(double baseDamageReduction)
     {
-        this.baseDamageReduction = baseDamageReduction;
+        properties.put("baseDamageReduction",baseDamageReduction);
         save();
     }
 
@@ -229,7 +257,7 @@ public abstract class StatModifier {
      */
     public double getTotalDamageReductionModifier()
     {
-        return totalDamageReductionModifier;
+        return (double) properties.get("totalDamageReductionModifier");
     }
 
     /**
@@ -240,7 +268,7 @@ public abstract class StatModifier {
      */
     public void setTotalDamageReductionModifier(double totalDamageReductionModifier)
     {
-        this.totalDamageReductionModifier = totalDamageReductionModifier;
+        properties.put("totalDamageReductionModifier",totalDamageReductionModifier);
         save();
     }
 
@@ -251,7 +279,7 @@ public abstract class StatModifier {
      */
     public double getTotalHealthModifier()
     {
-        return totalHealthModifier;
+        return (double) properties.get("totalHealthModifier");
     }
 
     /**
@@ -262,7 +290,7 @@ public abstract class StatModifier {
      */
     public void setTotalHealthModifier(double totalHealthModifier)
     {
-        this.totalHealthModifier = totalHealthModifier;
+        properties.put("totalHealthModifier",totalHealthModifier);
         save();
     }
 
@@ -355,7 +383,8 @@ public abstract class StatModifier {
                     stat.setName(components[1]);
                     break;
                 case "Slot":
-                    stat.slot = Slot.valueOf(components[1]);
+                    System.out.println(components[1]);
+                    stat.setSlot(Slot.valueOf(components[1]));
                     break;
                 case "baseHealthModifier":
                     stat.setBaseHealthModifier(Double.parseDouble(components[1]));
@@ -387,10 +416,10 @@ public abstract class StatModifier {
     protected void quickLoad()
     {
         try{
-            loadStatModifiers(ConfigManager.loadFile(getSaveLocation(this.name)), this);
+            loadStatModifiers(ConfigManager.loadFile(getSaveLocation(getName())), this);
         }catch(FileNotFoundException e)
         {
-            Chat.CHAT.println("Could not find \""+name+"\". Now saving for future use...");
+            Chat.CHAT.println("Could not find \""+getName()+"\". Now saving for future use...");
             save();
         }
     }
@@ -411,26 +440,7 @@ public abstract class StatModifier {
      */
     public String getSavingFormat()
     {
-        return String.format(
-                "Type=%s%n" +
-                "Name=%s%n" +
-                "Slot=%s%n" +
-                "baseHealthModifier=%f%n" +
-                "baseDamageModifier=%f%n" +
-                "baseDamageReduction=%f%n" +
-                "totalDamageModifier=%f%n" +
-                "totalHealthModifier=%f%n" +
-                "totalDamageReductionModifier=%f%n",
-                this.getClass().getName(),
-                this.name,
-                this.slot,
-                this.baseHealthModifier,
-                this.baseDamageModifier,
-                this.baseDamageReduction,
-                this.totalDamageModifier,
-                this.totalHealthModifier,
-                this.totalDamageReductionModifier
-        );
+        return properties.toSavingFormat();
     }
 
 
@@ -445,22 +455,22 @@ public abstract class StatModifier {
                 "\tName: %s%n" +
                 "\tClass: %s%n" +
                 "\tSlot: %s%n" ,
-                this.name,
+                getName(),
                 this.getClass().getSimpleName(),
-                this.slot.NAME
+                getSlot().NAME
         );
-        if(baseHealthModifier != 1)
-            output += String.format("\tBase Health Bonus: %,.2f%%%n",(baseHealthModifier-1)*100);
-        if(baseDamageModifier != 1)
-            output += String.format("\tBase Damage Bonus: %,.2f%%%n",(baseDamageModifier-1)*100);
-        if(baseDamageReduction != 0)
-            output += String.format("\tDamage Reduction Bonus: %,.2f Damage%n",baseDamageReduction);
-        if(totalDamageModifier != 0)
-            output += String.format("\tStackable Damage Bonus: %,.2f%%%n",(totalDamageModifier)*100);
-        if(totalHealthModifier != 0)
-            output += String.format("\tStackable Health Bonus: %,.2f%%%n",(totalHealthModifier)*100);
-        if(totalDamageReductionModifier != 0)
-            output += String.format("\tStackable Damage Reduction Bonus: %,.2f%%%n",(totalDamageReductionModifier)*100);
+        if(getBaseHealthModifier() != 1)
+            output += String.format("\tBase Health Bonus: %,.2f%%%n",(getBaseHealthModifier()-1)*100);
+        if(getBaseDamageModifier() != 1)
+            output += String.format("\tBase Damage Bonus: %,.2f%%%n",(getBaseDamageModifier()-1)*100);
+        if(getBaseDamageReduction() != 0)
+            output += String.format("\tDamage Reduction Bonus: %,.2f Damage%n",getBaseDamageReduction());
+        if(getTotalDamageModifier() != 0)
+            output += String.format("\tStackable Damage Bonus: %,.2f%%%n",(getTotalDamageModifier())*100);
+        if(getTotalHealthModifier() != 0)
+            output += String.format("\tStackable Health Bonus: %,.2f%%%n",(getTotalHealthModifier())*100);
+        if(getTotalDamageReductionModifier() != 0)
+            output += String.format("\tStackable Damage Reduction Bonus: %,.2f%%%n",(getTotalDamageReductionModifier())*100);
 
         return output;
     }

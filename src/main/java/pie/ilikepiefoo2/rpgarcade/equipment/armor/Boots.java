@@ -16,7 +16,7 @@ public class Boots extends StatModifier {
      */
     public Boots()
     {
-        this.slot = Slot.FEET;
+        setSlot(Slot.FEET);
     }
 
     /**
@@ -28,7 +28,6 @@ public class Boots extends StatModifier {
      */
     public Boots(String name)
     {
-        super(name);
-        this.slot = Slot.FEET;
+        super(name,Slot.FEET);
     }
 }
