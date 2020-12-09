@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="" />
+    <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Slot.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +20,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/RPG-Arcade" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lOcmhyqpHB9X8ZqWP9vxAU6aLf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -57,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="2696000" />
+      <workItem from="1607471742808" duration="3062000" />
     </task>
     <servers />
   </component>

@@ -5,9 +5,8 @@ public enum Slot {
     CHEST(1, "Chestplate"),
     LEGS(2, "Leggings"),
     FEET(3, "Boots"),
-    LEFT_HAND(4, "Left Hand"),
-    RIGHT_HAND(5, "Right Hand"),
-    PASSIVE(6, "Passive Effects");
+    HANDS(4, "Right Hand"),
+    PASSIVE(5, "Passive Effects");
 
     public final int POSITION;
     public final String NAME;

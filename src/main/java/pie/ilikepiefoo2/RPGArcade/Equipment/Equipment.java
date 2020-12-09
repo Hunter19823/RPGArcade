@@ -8,7 +8,6 @@ public class Equipment{
     private StatModifier CHEST;
     private StatModifier LEGS;
     private StatModifier BOOTS;
-    private StatModifier LEFT_HAND;
     private StatModifier RIGHT_HAND;
     private ArrayList<StatModifier> PASSIVE;
 
@@ -47,6 +46,13 @@ public class Equipment{
                 if(this.BOOTS != null)
                 {
                     currentPiece = this.BOOTS;
+                }
+                this.BOOTS = replacement;
+                break;
+            case HANDS:
+                if(this.RIGHT_HAND != null)
+                {
+                    currentPiece = this.RIGHT_HAND;
                 }
                 this.BOOTS = replacement;
                 break;
