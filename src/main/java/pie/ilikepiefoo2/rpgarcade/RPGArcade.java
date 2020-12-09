@@ -19,7 +19,7 @@ public class RPGArcade {
         //new Sword("Pie's Epic Sword").setBaseHealthModifier(1);
         Human player = new Human("Pie");
         player.displayFullStats();
-
+        
 
     }
 
@@ -59,7 +59,7 @@ public class RPGArcade {
 
     /**
      * Host a battleRoyal between two entities until one can no longer fight.
-     * 
+     *
      * @param player1
      * @param player2
      * @return Winner

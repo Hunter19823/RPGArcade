@@ -1,22 +1,26 @@
 package main.java.pie.ilikepiefoo2.rpgarcade.entity;
 
+import java.util.function.Supplier;
+
 /**
  *
  * Used to hold all Implemented Entities
  *
  */
 public enum Entities {
-    HUMAN(Human.class);
+    HUMAN(Human.class,Human::new);
 
+    public final Supplier<Entity> SUPPLIER;
     public final Class CLASS;
 
     /**
      * Entities Enum Constructor
      * @param CLASS The class this Enum Represents.
      */
-    Entities(Class CLASS)
+    Entities(Class CLASS, Supplier<Entity> SUPPLIER)
     {
         this.CLASS = CLASS;
+        this.SUPPLIER = SUPPLIER;
     }
 
     /**

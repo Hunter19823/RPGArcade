@@ -323,20 +323,10 @@ public abstract class Entity {
 
         if(components[0].equals("Type")) {
             for(Entities entity : Entities.values()){
-                if(entity.CLASS.toString().equals(components[1]))
+                if(entity.CLASS.getName().equals(components[1]))
                 {
-                    try {
-                        ent = (Entity) entity.CLASS.getConstructor().newInstance();
-                        break;
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    }
+                    ent = entity.SUPPLIER.get();
+                    break;
                 }
             }
             if(ent == null)
@@ -422,7 +412,7 @@ public abstract class Entity {
                         "BaseHealth=%f%n" +
                         "BaseDamage=%f%n" +
                         "CurrentHealth=%f%n",
-                this.getClass().toString(),
+                this.getClass().getName(),
                 this.name,
                 this.level,
                 this.baseHealth,

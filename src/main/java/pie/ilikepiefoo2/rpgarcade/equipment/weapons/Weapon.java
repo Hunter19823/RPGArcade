@@ -1,5 +1,9 @@
 package main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons;
 
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.StatModifier;
+
+import java.util.function.Supplier;
+
 /**
  *
  * Used to hold all currently
@@ -7,16 +11,18 @@ package main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons;
  *
  */
 public enum Weapon {
-    SWORD(Sword.class);
+    SWORD(Sword.class, Sword::new);
 
+    public final Supplier<StatModifier> SUPPLIER;
     public final Class CLASS;
 
     /**
      * Weapon Enum Constructor
      * @param CLASS The class this Enum Represents.
      */
-    Weapon(Class CLASS){
+    Weapon(Class CLASS, Supplier<StatModifier> SUPPLIER){
         this.CLASS = CLASS;
+        this.SUPPLIER = SUPPLIER;
     }
 
     /**

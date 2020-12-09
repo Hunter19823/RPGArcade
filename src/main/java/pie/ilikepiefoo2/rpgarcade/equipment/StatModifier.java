@@ -310,37 +310,17 @@ public abstract class StatModifier {
 
         if(components[0].equals("Type")) {
             for(Weapon weapon : Weapon.values()){
-                if(weapon.CLASS.toString().equals(components[1]))
+                if(weapon.CLASS.getName().equals(components[1]))
                 {
-                    try {
-                        stat = (StatModifier) weapon.CLASS.getConstructor().newInstance();
-                        break;
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    }
+                    stat = weapon.SUPPLIER.get();
+                    break;
                 }
             }
             for(Armor armor : Armor.values()){
-                if(components[1].equals(armor.CLASS.toString()))
+                if(armor.CLASS.getName().equals(components[1]))
                 {
-                    try {
-                        stat = (StatModifier) armor.CLASS.getConstructor().newInstance();
-                        break;
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    }
+                    stat = armor.SUPPLIER.get();
+                    break;
                 }
             }
             if(stat == null)
@@ -441,7 +421,7 @@ public abstract class StatModifier {
                 "totalDamageModifier=%f%n" +
                 "totalHealthModifier=%f%n" +
                 "totalDamageReductionModifier=%f%n",
-                this.getClass().toString(),
+                this.getClass().getName(),
                 this.name,
                 this.slot,
                 this.baseHealthModifier,
