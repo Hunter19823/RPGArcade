@@ -1,6 +1,8 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 
+import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
+
 import java.util.ArrayList;
 
 public class Equipment{
@@ -23,6 +25,48 @@ public class Equipment{
             this.EQUIPMENT[slot.POSITION] = replacement;
         }
         return currentPiece;
+    }
+
+    public double getBaseDamageModifiers(Entity entity)
+    {
+        double damage = entity.getBaseDamage();
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) damage += stat.applyBaseDamageModifier(entity);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) damage += stat.applyBaseDamageModifier(entity);
+        }
+        return damage;
+    }
+
+    public double getTotalDamageModifiers(Entity entity, double totalDamage)
+    {
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) totalDamage += stat.applyTotalDamageModifier(totalDamage);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) totalDamage += stat.applyTotalDamageModifier(totalDamage);
+        }
+        return totalDamage;
+    }
+
+    public StatModifier[] getEquipmentModifiers()
+    {
+        return EQUIPMENT;
+    }
+
+    public ArrayList<StatModifier> getPassiveModifiers()
+    {
+        return PASSIVE;
+    }
+
+    public StatModifier getWeapon()
+    {
+        return EQUIPMENT[Slot.HANDS.POSITION];
     }
 }
 
