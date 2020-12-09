@@ -298,7 +298,7 @@ public abstract class StatModifier {
         if(baseDamageModifier != 1)
             output += String.format("\tBase Damage Bonus: %,.2f%%%n",(baseDamageModifier-1)*100);
         if(baseDamageReduction != 0)
-            output += String.format("\tDamage Reduction Bonus: %,.2f Damage%n",baseDamageModifier*-1);
+            output += String.format("\tDamage Reduction Bonus: %,.2f Damage%n",baseDamageReduction);
         if(totalDamageModifier != 0)
             output += String.format("\tStackable Damage Bonus: %,.2f%%%n",(totalDamageModifier)*100);
         if(totalHealthModifier != 0)

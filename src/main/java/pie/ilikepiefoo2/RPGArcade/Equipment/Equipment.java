@@ -36,7 +36,6 @@ public class Equipment{
         return currentPiece;
     }
 
-
     public double getBaseDamageModifiers(Entity entity)
     {
         double damage = entity.getBaseDamage();
@@ -91,30 +90,18 @@ public class Equipment{
         return totalHealth;
     }
 
-    public double getDamageReduction(Entity entity, double damage)
+    public double getTotalDamageReduction()
     {
+        double total = 0;
         for(StatModifier stat : EQUIPMENT)
         {
-            if( stat != null) damage = stat.applyBaseDamageReduction(damage);
+            if( stat != null) total += stat.getBaseDamageReduction();
         }
         for(StatModifier stat : PASSIVE)
         {
-            if( stat != null) damage = stat.applyBaseDamageReduction(damage);
+            if( stat != null) total += stat.getBaseDamageReduction();
         }
-        return damage;
-    }
-
-    public double getTotalDamageReductionModifiers(Entity entity, double totalDamage)
-    {
-        for(StatModifier stat : EQUIPMENT)
-        {
-            if( stat != null) totalDamage = stat.applyTotalDamageReductionModifier(totalDamage);
-        }
-        for(StatModifier stat : PASSIVE)
-        {
-            if( stat != null) totalDamage = stat.applyTotalDamageReductionModifier(totalDamage);
-        }
-        return totalDamage;
+        return total;
     }
 
     public StatModifier[] getEquipmentModifiers()
@@ -147,10 +134,10 @@ public class Equipment{
         StringBuilder output = new StringBuilder();
         output.append("Equipment: \n");
         for(StatModifier stat : EQUIPMENT)
-            if( stat != null) output.append(stat.getStats());
+            if( stat != null) output.append(stat.getStats()+"\n");
         output.append("Passive Buffs: \n");
         for(StatModifier stat : PASSIVE)
-            if( stat != null) output.append(stat.getStats());
+            if( stat != null) output.append(stat.getStats()+"\n");
         return output.toString();
     }
 }

@@ -16,7 +16,6 @@ public class RPGArcade {
         //new Sword("Pie's Epic Sword").setBaseHealthModifier(1);
 
         Human player = new Human("Pie");
-        player.displayStats();
 
         equipIronArmor(player);
 

@@ -50,6 +50,11 @@ public abstract class Entity {
         save();
     }
 
+    public double getTotalDamageReduction()
+    {
+        return this.equipment.getTotalDamageReduction();
+    }
+
     public double getBaseHealth()
     {
         return baseHealth;
@@ -108,6 +113,8 @@ public abstract class Entity {
 
     protected double hurt(double damage, Entity attacker)
     {
+        double reduction = this.getTotalDamageReduction();
+        damage = reduction >= damage ? 0 : damage-reduction;
         currentHealth -= damage;
         StatModifier weapon = attacker.getWeapon();
         System.out.printf("%s attacked %s with their %s for a total of %,.2f damage! Remaining HP: %,.2f%n",attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), damage, getCurrentHealth());
@@ -246,7 +253,37 @@ public abstract class Entity {
 
     public String getStats()
     {
-        return String.format("Name: %s%nLevel: %d%nHealth: %,.2f / %,.2f%nDamage: %,.2f to %,.2f%n%s",name,level,getCurrentHealth(),getMaxHealth(),baseDamage,getMaxDamage(),equipment.getEquipmentStats());
+        return String.format(
+                "Name: %s%n" +
+                "Level: %d%n"+
+                "Health: %,.2f / %,.2f%n"+
+                "Damage: %,.2f to %,.2f%n"+
+                "Armor: %,.2f%n",
+                name,
+                level,
+                getCurrentHealth(),
+                getMaxHealth(),
+                baseDamage,
+                getMaxDamage(),
+                getTotalDamageReduction());
+    }
+
+    public String getFullStats()
+    {
+        return String.format(
+                "Name: %s%n" +
+                        "Level: %d%n"+
+                        "Health: %,.2f / %,.2f%n"+
+                        "Damage: %,.2f to %,.2f%n"+
+                        "Armor: %,.2f%n%s",
+                name,
+                level,
+                getCurrentHealth(),
+                getMaxHealth(),
+                baseDamage,
+                getMaxDamage(),
+                getTotalDamageReduction(),
+                equipment.getEquipmentStats());
     }
 
     public void displayStats()
@@ -254,14 +291,19 @@ public abstract class Entity {
         System.out.println(getStats());
     }
 
+    public void displayFullStats()
+    {
+        System.out.println(getFullStats());
+    }
+
     public StatModifier equip(StatModifier equipment)
     {
         StatModifier replacement = this.equipment.equip(equipment,equipment.getSlot());
         if(replacement!=null)
         {
-            System.out.printf("You have swapped out your \"%s\" for this \"%s\".%n",replacement.getName(),equipment.getName());
+            System.out.printf("%s has swapped out their \"%s\" for the \"%s\".%n",this.name,replacement.getName(),equipment.getName());
         }else{
-            System.out.printf("You have equipped the \"%s\"%n",equipment.getName());
+            System.out.printf("%s has equipped their \"%s\"%n",this.name,equipment.getName());
         }
         save();
         return replacement;
