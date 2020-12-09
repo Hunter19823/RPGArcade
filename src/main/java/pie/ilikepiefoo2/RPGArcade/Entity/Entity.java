@@ -5,6 +5,7 @@ import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Slot;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Armor;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
+import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
@@ -14,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public abstract class Entity {
-    public static final String SAVE_LOCATION="src/main/resources/saved/";
+    public static final String SAVE_LOCATION = "src/main/resources/saved/";
     protected String name = "Default";
     protected double baseHealth = 100;
     protected double currentHealth = baseHealth;
@@ -45,8 +46,8 @@ public abstract class Entity {
     private void levelUp()
     {
         this.level++;
-        this.baseHealth += level*Math.random()*10;
-        this.baseDamage += level*Math.random()*7.5;
+        this.baseHealth += level * Math.random() * 10;
+        this.baseDamage += level * Math.random() * 7.5;
         save();
     }
 
@@ -75,9 +76,20 @@ public abstract class Entity {
         this.currentHealth = currentHealth;
     }
 
+    public void heal()
+    {
+        setCurrentHealth(getMaxHealth());
+        Chat.CHAT.printf("%s's wounds have been completely erased.%n", name);
+    }
+
+    public boolean isAlive()
+    {
+        return getCurrentHealth() > 0;
+    }
+
     public double getMaxHealth()
     {
-        return this.equipment.getTotalHealthModifiers(this,this.equipment.getBaseHealthModifiers(this));
+        return this.equipment.getTotalHealthModifiers(this, this.equipment.getBaseHealthModifiers(this));
     }
 
     public double getBaseDamage()
@@ -92,7 +104,7 @@ public abstract class Entity {
 
     public double getMaxDamage()
     {
-        return this.equipment.getTotalDamageModifiers(this,this.equipment.getBaseDamageModifiers(this));
+        return this.equipment.getTotalDamageModifiers(this, this.equipment.getBaseDamageModifiers(this));
     }
 
     public Equipment getEquipment()
@@ -105,9 +117,26 @@ public abstract class Entity {
         return this.equipment.getWeapon();
     }
 
+    public StatModifier equip(StatModifier equipment)
+    {
+        StatModifier replacement = this.equipment.equip(equipment, equipment.getSlot());
+        if (replacement != null) {
+            Chat.CHAT.printf("%s has swapped out their \"%s\" for the \"%s\".%n", this.name, replacement.getName(), equipment.getName());
+        } else {
+            Chat.CHAT.printf("%s has equipped their \"%s\"%n", this.name, equipment.getName());
+        }
+        save();
+        return replacement;
+    }
+
+    public void strip()
+    {
+        this.equipment.strip(this);
+    }
+
     public void attack(Entity target)
     {
-        double damage = this.getMaxDamage();
+        double damage = Math.random() * (this.getMaxDamage() - this.getBaseDamage() + 1) + this.getBaseDamage();
         target.hurt(damage,this);
     }
 
@@ -117,7 +146,11 @@ public abstract class Entity {
         damage = reduction >= damage ? 0 : damage-reduction;
         currentHealth -= damage;
         StatModifier weapon = attacker.getWeapon();
-        System.out.printf("%s attacked %s with their %s for a total of %,.2f damage! Remaining HP: %,.2f%n",attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), damage, getCurrentHealth());
+        if(damage <= 0){
+            Chat.CHAT.printf("%s attacked %s with their %s but their attack was not strong enough! Remaining HP: %,.2f%n", attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), getCurrentHealth());
+        }else {
+            Chat.CHAT.printf("%s attacked %s with their %s for a total of %,.2f damage! Remaining HP: %,.2f%n", attacker.name, this.name, weapon == null ? "fists" : weapon.getName(), damage, getCurrentHealth());
+        }
         return currentHealth;
     }
 
@@ -188,7 +221,7 @@ public abstract class Entity {
                         entity.equipment.equip(statModifier, statModifier.getSlot());
                     }catch(FileNotFoundException e)
                     {
-                        System.out.println("Error trying to load equipment by the name of: \""+components[1]+"\". File does not exist.");
+                        Chat.CHAT.println("Error trying to load equipment by the name of: \""+components[1]+"\". File does not exist.");
                     }
                     break;
             }
@@ -241,7 +274,7 @@ public abstract class Entity {
             loadEntity(ConfigManager.loadFile(getSaveLocation(this.name)), this);
         }catch(FileNotFoundException e)
         {
-            System.out.println("Could not find \""+name+"\". Now saving for future use.");
+            Chat.CHAT.println("Could not find \""+name+"\". Now saving for future use.");
             save();
         }
     }
@@ -288,25 +321,13 @@ public abstract class Entity {
 
     public void displayStats()
     {
-        System.out.println(getStats());
+        Chat.CHAT.println(getStats());
     }
 
     public void displayFullStats()
     {
-        System.out.println(getFullStats());
+        Chat.CHAT.println(getFullStats());
     }
 
-    public StatModifier equip(StatModifier equipment)
-    {
-        StatModifier replacement = this.equipment.equip(equipment,equipment.getSlot());
-        if(replacement!=null)
-        {
-            System.out.printf("%s has swapped out their \"%s\" for the \"%s\".%n",this.name,replacement.getName(),equipment.getName());
-        }else{
-            System.out.printf("%s has equipped their \"%s\"%n",this.name,equipment.getName());
-        }
-        save();
-        return replacement;
-    }
 
 }

@@ -4,6 +4,7 @@ import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Armor;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
+import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
@@ -244,7 +245,7 @@ public abstract class StatModifier {
             loadStatModifiers(ConfigManager.loadFile(getSaveLocation(this.name)), this);
         }catch(FileNotFoundException e)
         {
-            System.out.println("Could not find \""+name+"\". Now saving for future use...");
+            Chat.CHAT.println("Could not find \""+name+"\". Now saving for future use...");
             save();
         }
     }
@@ -280,7 +281,7 @@ public abstract class StatModifier {
 
     public void displayStats()
     {
-        System.out.print(getStats());
+        Chat.CHAT.print(getStats());
     }
 
     public String getStats()

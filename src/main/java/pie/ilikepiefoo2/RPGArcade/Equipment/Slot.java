@@ -5,7 +5,7 @@ public enum Slot {
     CHEST(1, "Chestplate"),
     LEGS(2, "Leggings"),
     FEET(3, "Boots"),
-    HANDS(4, "Right Hand"),
+    HANDS(4, "Weapon"),
     PASSIVE(5, "Passive Effects");
 
     public final int POSITION;

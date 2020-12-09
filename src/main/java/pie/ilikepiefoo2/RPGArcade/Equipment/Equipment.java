@@ -2,7 +2,12 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Boots;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Chestplate;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Helmet;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Leggings;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
+import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
 import java.lang.reflect.InvocationTargetException;
@@ -117,6 +122,36 @@ public class Equipment{
     public StatModifier getWeapon()
     {
         return EQUIPMENT[Slot.HANDS.POSITION];
+    }
+
+    public Helmet getHelmet()
+    {
+        return (Helmet) EQUIPMENT[Slot.HEAD.POSITION];
+    }
+
+    public Chestplate getChestplate()
+    {
+        return (Chestplate) EQUIPMENT[Slot.CHEST.POSITION];
+    }
+
+    public Leggings getLeggings()
+    {
+        return (Leggings) EQUIPMENT[Slot.LEGS.POSITION];
+    }
+
+    public Boots getBoots()
+    {
+        return (Boots) EQUIPMENT[Slot.FEET.POSITION];
+    }
+
+    public void strip(Entity entity)
+    {
+        for(int i=0; i<EQUIPMENT.length; i++)
+        {
+            if(EQUIPMENT[i] != null)
+                Chat.CHAT.printf("%s has been stripped of their %s (%s)%n",entity.getName(),EQUIPMENT[i].slot.NAME, EQUIPMENT[i].name);
+            EQUIPMENT[i] = null;
+        }
     }
 
     public String getSavingFormat()
