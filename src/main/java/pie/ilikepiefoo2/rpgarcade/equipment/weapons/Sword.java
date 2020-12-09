@@ -1,7 +1,7 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons;
+package main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons;
 
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Slot;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.Slot;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.StatModifier;
 
 /**
  * Sword Class

@@ -1,28 +1,41 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
+package main.java.pie.ilikepiefoo2.rpgarcade.equipment;
 
 
-import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Boots;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Chestplate;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Helmet;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Leggings;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
+import main.java.pie.ilikepiefoo2.rpgarcade.entity.Entity;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Boots;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Chestplate;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Helmet;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Leggings;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigManager;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+/**
+ * Equipment Class
+ * Used to represent an entities's armor,
+ * weapons, buffs, and debuffs.
+ */
 public class Equipment{
     private StatModifier[] EQUIPMENT;
     private ArrayList<StatModifier> PASSIVE;
 
+    /**
+     * Constructor
+     */
     public Equipment()
     {
         this.PASSIVE = new ArrayList<StatModifier>();
         this.EQUIPMENT = new StatModifier[Slot.values().length-1];
     }
 
+    /**
+     * Equips an item to a slot, replacing
+     * anything there and returning it.
+     * @param replacement       The item being replaced.
+     * @param slot              The slot the item belongs in.
+     * @return previousPiece    The previous item in that slot.
+     */
     public StatModifier equip(StatModifier replacement, Slot slot)
     {
         StatModifier currentPiece = null;
@@ -41,6 +54,12 @@ public class Equipment{
         return currentPiece;
     }
 
+    /**
+     * Calculate the damage from any base damage Modifiers.
+     * @param entity    The entity attacking.
+     * @return damage   The resulting damage after applying
+     *                  damage modifiers.
+     */
     public double getBaseDamageModifiers(Entity entity)
     {
         double damage = entity.getBaseDamage();
@@ -55,6 +74,13 @@ public class Equipment{
         return damage;
     }
 
+    /**
+     * Calculate the damage from any total damage Modifiers.
+     * @param entity        The entity attacking.
+     * @param totalDamage   The total damage calculated so far.
+     * @return damage       The resulting damage after applying
+     *                      total damage modifiers.
+     */
     public double getTotalDamageModifiers(Entity entity, double totalDamage)
     {
         for(StatModifier stat : EQUIPMENT)
@@ -68,6 +94,12 @@ public class Equipment{
         return totalDamage;
     }
 
+    /**
+     * Calculate the health from any base health Modifiers.
+     * @param entity    The entity attacking.
+     * @return damage   The resulting health after applying
+     *                  health modifiers.
+     */
     public double getBaseHealthModifiers(Entity entity)
     {
         double health = entity.getBaseHealth();
@@ -82,6 +114,14 @@ public class Equipment{
         return health;
     }
 
+    /**
+     * Calculate the health from any total health Modifiers.
+     *
+     * @param entity        The entity attacking.
+     * @param totalHealth   The total health calculated so far.
+     * @return damage       The resulting health after applying
+     *                      total health modifiers.
+     */
     public double getTotalHealthModifiers(Entity entity, double totalHealth)
     {
         for(StatModifier stat : EQUIPMENT)
@@ -95,6 +135,12 @@ public class Equipment{
         return totalHealth;
     }
 
+    /**
+     * Calculate the total damage reduction
+     * granted by all currently equipped equipment.
+     *
+     * @return totalDamageReduction
+     */
     public double getTotalDamageReduction()
     {
         double total = 0;
@@ -109,41 +155,89 @@ public class Equipment{
         return total;
     }
 
+    /**
+     * Gets all the non-passive equipment.
+     * (Armor/Weapons)
+     *
+     * @return gear
+     */
     public StatModifier[] getEquipmentModifiers()
     {
         return EQUIPMENT;
     }
 
+    /**
+     * Gets all the passive equipment.
+     * (Effects)
+     *
+     * @return passiveEffects
+     */
     public ArrayList<StatModifier> getPassiveModifiers()
     {
         return PASSIVE;
     }
 
+    /**
+     * Gets the current weapon being held.
+     *
+     * @return weapon   Will return null if
+     *                  no weapon is equipped.
+     */
     public StatModifier getWeapon()
     {
         return EQUIPMENT[Slot.HANDS.POSITION];
     }
 
+    /**
+     * Gets the current Helmet.
+     *
+     * @return Helmet   Will return null if
+     *                  Helmet isn't equipped.
+     */
     public Helmet getHelmet()
     {
         return (Helmet) EQUIPMENT[Slot.HEAD.POSITION];
     }
 
+    /**
+     * Gets the current Chestplate.
+     *
+     * @return Chestplate   Will return null if
+     *                      Chestplate aren't equipped.
+     */
     public Chestplate getChestplate()
     {
         return (Chestplate) EQUIPMENT[Slot.CHEST.POSITION];
     }
 
+    /**
+     * Gets the current Leggings.
+     *
+     * @return Leggings   Will return null if
+     *                    Leggings aren't equipped.
+     */
     public Leggings getLeggings()
     {
         return (Leggings) EQUIPMENT[Slot.LEGS.POSITION];
     }
 
+    /**
+     * Gets the current Boots.
+     *
+     * @return Boots   Will return null if
+     *                 Boots aren't equipped.
+     */
     public Boots getBoots()
     {
         return (Boots) EQUIPMENT[Slot.FEET.POSITION];
     }
 
+    /**
+     * Strips the Equipment from
+     * the entity.
+     *
+     * @param entity Entity being stripped.
+     */
     public void strip(Entity entity)
     {
         for(int i=0; i<EQUIPMENT.length; i++)
@@ -154,6 +248,12 @@ public class Equipment{
         }
     }
 
+    /**
+     * Gets the String used for parsing
+     * and saving an Equipments's properties
+     *
+     * @return SavingFormat
+     */
     public String getSavingFormat()
     {
         String output = "";
@@ -164,6 +264,12 @@ public class Equipment{
         return output;
     }
 
+    /**
+     * Gets the the stats of each piece of
+     * equipment.
+     *
+     * @return EquipmentStats
+     */
     public String getEquipmentStats()
     {
         StringBuilder output = new StringBuilder();

@@ -1,4 +1,4 @@
-Type=class main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Boots
+Type=class main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Boots
 Name=Iron Boots
 Slot=FEET
 baseHealthModifier=1.000000

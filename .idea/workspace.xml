@@ -3,8 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Sword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Human.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/Equipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/Slot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/StatModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/StatModifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Armor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Boots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Boots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Chestplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Chestplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Helmet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Helmet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Leggings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Leggings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/weapons/Sword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/weapons/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/RPGArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/RPGArcade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Util/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/util/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Util/ConfigException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/util/ConfigException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Util/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/util/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Boots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Boots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Chestplate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Chestplate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Helmet.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Helmet.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Leggings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Leggings.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Pies_Epic_Sword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Pies_Epic_Sword.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +65,11 @@
   </component>
   <component name="RunManager">
     <configuration name="RPGArcade" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.java.pie.ilikepiefoo2.RPGArcade.RPGArcade" />
+      <option name="MAIN_CLASS_NAME" value="main.java.pie.ilikepiefoo2.rpgarcade.RPGArcade" />
       <module name="RPGArcade" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.java.pie.ilikepiefoo2.RPGArcade.*" />
+          <option name="PATTERN" value="main.java.pie.ilikepiefoo2.rpgarcade.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,7 +105,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="35025000" />
+      <workItem from="1607471742808" duration="39775000" />
     </task>
     <servers />
   </component>
@@ -103,29 +124,29 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="700" y="19" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1607490742616" />
-    <state width="1876" height="316" key="GridCell.Tab.0.bottom" timestamp="1607502847988">
+    <state width="1876" height="316" key="GridCell.Tab.0.bottom" timestamp="1607510645537">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1876" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1607502847988" />
-    <state width="1876" height="316" key="GridCell.Tab.0.center" timestamp="1607502847988">
+    <state width="1876" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1607510645537" />
+    <state width="1876" height="316" key="GridCell.Tab.0.center" timestamp="1607510645537">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1876" height="316" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1607502847988" />
-    <state width="1876" height="316" key="GridCell.Tab.0.left" timestamp="1607502847987">
+    <state width="1876" height="316" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1607510645537" />
+    <state width="1876" height="316" key="GridCell.Tab.0.left" timestamp="1607510645537">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1876" height="316" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1607502847987" />
-    <state width="1876" height="316" key="GridCell.Tab.0.right" timestamp="1607502847988">
+    <state width="1876" height="316" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1607510645537" />
+    <state width="1876" height="316" key="GridCell.Tab.0.right" timestamp="1607510645537">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1876" height="316" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1607502847988" />
-    <state x="616" y="265" key="run.anything.popup" timestamp="1607506688694">
+    <state width="1876" height="316" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1607510645537" />
+    <state x="616" y="265" width="672" height="677" key="run.anything.popup" timestamp="1607509502448">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="616" y="265" key="run.anything.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607506688694" />
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1607502355658">
+    <state x="616" y="265" width="672" height="677" key="run.anything.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607509502448" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1607511405725">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607502355658" />
+    <state x="623" y="255" width="672" height="678" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607511405725" />
   </component>
 </project>

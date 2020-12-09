@@ -1,4 +1,4 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
+package main.java.pie.ilikepiefoo2.rpgarcade.entity;
 
 /**
  * Human Class.

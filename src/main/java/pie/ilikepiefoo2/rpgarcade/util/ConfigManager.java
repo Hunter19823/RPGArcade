@@ -1,16 +1,22 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Util;
+package main.java.pie.ilikepiefoo2.rpgarcade.util;
 
 import java.io.*;
-import java.util.Scanner;
 
+/**
+ * Config Manager
+ */
 public class ConfigManager {
+    /**
+     * Loads File and returns it as a string.
+     *
+     * @param path                      Location of the File.
+     * @return FileContent              The contents of the File.
+     * @throws ConfigException          If there is an internal config error.
+     * @throws FileNotFoundException    If the file/folder containing the file
+     *                                  doesn't exist.
+     */
     public static String loadFile(String path) throws ConfigException, FileNotFoundException
     {
-        /*
-            Try to open the file at filepath
-            otherwise throw a
-            generic config error.
-         */
         FileReader fileReader = null;
         fileReader = new FileReader(path);
         /*
@@ -32,6 +38,13 @@ public class ConfigManager {
         return sb.toString();
     }
 
+    /**
+     * Save a file to a location
+     *
+     * @param path              File location
+     * @param data              File data.
+     * @throws ConfigException  If there is an internal config error.
+     */
     public static void saveFile(String path, String data) throws ConfigException
     {
         BufferedWriter writer = null;
@@ -49,6 +62,12 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Converts a name to a filename that is safe.
+     *
+     * @param name
+     * @return fileName
+     */
     public static String getSafeName(String name)
     {
         StringBuilder builder = new StringBuilder();

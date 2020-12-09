@@ -1,6 +1,4 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
-
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Armor;
+package main.java.pie.ilikepiefoo2.rpgarcade.entity;
 
 /**
  *
@@ -28,7 +26,6 @@ public enum Entities {
      * @return boolean  Return true if the className
      *                  is an implemented entity.
      */
-
     public static boolean isEntity(String className)
     {
         for(Entities entity : Entities.values())

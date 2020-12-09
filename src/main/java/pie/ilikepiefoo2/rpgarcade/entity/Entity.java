@@ -1,10 +1,10 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
+package main.java.pie.ilikepiefoo2.rpgarcade.entity;
 
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Equipment;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.Equipment;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.StatModifier;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigException;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.ConfigManager;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
@@ -37,6 +37,7 @@ public abstract class Entity {
 
     /**
      * Auto-Loaded Constructor.
+     *
      * @param name Will load any entities
      *             with this name, otherwise
      *             it will create one itself.
@@ -49,6 +50,7 @@ public abstract class Entity {
 
     /**
      * Get the name of the Entity
+     *
      * @return name
      */
     public String getName()
@@ -58,6 +60,7 @@ public abstract class Entity {
 
     /**
      * Set the name of the Entity
+     *
      * @param name
      */
     public void setName(String name)
@@ -67,6 +70,7 @@ public abstract class Entity {
 
     /**
      * Get the level of the Entity
+     *
      * @return level
      */
     public int getLevel()
@@ -76,6 +80,7 @@ public abstract class Entity {
 
     /**
      * Set the level of the Entity
+     *
      * @param level
      */
     public void setLevel(int level)
@@ -99,6 +104,7 @@ public abstract class Entity {
     /**
      * Calculate the total damage reduction
      * of the entities equipment.
+     *
      * @return TotalDamageReduction
      */
     public double getTotalDamageReduction()
@@ -108,6 +114,7 @@ public abstract class Entity {
 
     /**
      * Gets the base health of the entity.
+     *
      * @return BaseHealth
      */
     public double getBaseHealth()
@@ -117,6 +124,7 @@ public abstract class Entity {
 
     /**
      * Sets the base health of the entity.
+     *
      * @param baseHealth a double above 0.
      */
     public void setBaseHealth(double baseHealth)
@@ -130,7 +138,8 @@ public abstract class Entity {
      * Gets the current health of the entity.
      * If the current Health is larger than the
      * max health, than the current health will be
-     * modified.
+     * set to max health.
+     *
      * @return currentHealth
      */
     public double getCurrentHealth()
@@ -142,6 +151,7 @@ public abstract class Entity {
 
     /**
      * Sets the current health of the entity.
+     *
      * @param currentHealth
      */
     public void setCurrentHealth(double currentHealth)
@@ -160,6 +170,7 @@ public abstract class Entity {
 
     /**
      * Checks if the entity is still living.
+     *
      * @return isAlive
      */
     public boolean isAlive()
@@ -170,6 +181,7 @@ public abstract class Entity {
     /**
      * Gets the maximum health of the
      * entity after equipment bonuses.
+     *
      * @return maxHealth
      */
     public double getMaxHealth()
@@ -179,6 +191,7 @@ public abstract class Entity {
 
     /**
      * Gets the base damage of the entity.
+     *
      * @return baseDamage
      */
     public double getBaseDamage()
@@ -188,6 +201,7 @@ public abstract class Entity {
 
     /**
      * Sets the base damage of the entity.
+     *
      * @param baseDamage
      */
     public void setBaseDamage(double baseDamage)
@@ -198,6 +212,7 @@ public abstract class Entity {
     /**
      * Gets the maximum damage of the entity
      * with current equipment.
+     *
      * @return maxDamage
      */
     public double getMaxDamage()
@@ -207,6 +222,7 @@ public abstract class Entity {
 
     /**
      * Gets the entity's Equipment.
+     *
      * @return Equipment
      */
     public Equipment getEquipment()
@@ -216,6 +232,7 @@ public abstract class Entity {
 
     /**
      * Gets the Weapon in the entity's hand.
+     *
      * @return Weapon (will return null if none present.)
      */
     public StatModifier getWeapon()
@@ -256,6 +273,7 @@ public abstract class Entity {
 
     /**
      * Attacks another entity.
+     *
      * @param target
      */
     public void attack(Entity target)
@@ -267,6 +285,7 @@ public abstract class Entity {
     /**
      * Whenever an entity is being hurt
      * by another entity.
+     *
      * @param damage            the damage delt by the attacker.
      * @param attacker          the entity that is attacking.
      * @return remainingHealth  the health remaining after the attack.
@@ -288,6 +307,7 @@ public abstract class Entity {
     /**
      * Finds, Loads, and Initializes an
      * entity.
+     *
      * @param entityName                The name of the entity.
      * @return Entity                   Returns an object of type Entity.
      * @throws ConfigException          If the config manager had any internal issues.
@@ -330,6 +350,7 @@ public abstract class Entity {
 
     /**
      * Initializes an entity with the proper blueprints.
+     *
      * @param blueprint         The blueprints needed to create the entity.
      * @param entity            The entity being built.
      * @return Entity           Returns the entity being built.
@@ -377,6 +398,7 @@ public abstract class Entity {
 
     /**
      * Saves the entity to a specific filePath.
+     *
      * @param filePath          The location where the file will be saved.
      * @throws ConfigException  If the config manager had any internal issues.
      */
@@ -387,8 +409,9 @@ public abstract class Entity {
 
     /**
      * Gets the String used for parsing
-     * and Entities's properites
-     * @return String
+     * and saving an Entities's properties
+     *
+     * @return SavingFormat
      */
     public String getSavingFormat()
     {
@@ -410,6 +433,7 @@ public abstract class Entity {
     /**
      * Gets the full path of an entity
      * using only it's name.
+     *
      * @param name      The name of the entity.
      * @return String   The file path where the
      *                  entity would be stored.
@@ -454,6 +478,7 @@ public abstract class Entity {
     /**
      * A simple string representation
      * of the entity.
+     *
      * @return String
      */
     public String toString()
@@ -464,6 +489,7 @@ public abstract class Entity {
     /**
      * Gets the stats of the entity
      * without it's equipment.
+     *
      * @return Stats
      */
     public String getStats()
@@ -486,6 +512,7 @@ public abstract class Entity {
     /**
      * Gets the stats of the entity
      * with it's equipment.
+     *
      * @return Stats
      */
     public String getFullStats()

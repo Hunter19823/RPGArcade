@@ -1,15 +1,17 @@
-package main.java.pie.ilikepiefoo2.RPGArcade;
+package main.java.pie.ilikepiefoo2.rpgarcade;
 
 
-import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
-import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Human;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Boots;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Chestplate;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Helmet;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Leggings;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword;
-import main.java.pie.ilikepiefoo2.RPGArcade.Util.Chat;
+import main.java.pie.ilikepiefoo2.rpgarcade.entity.Entity;
+import main.java.pie.ilikepiefoo2.rpgarcade.entity.Human;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Boots;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Chestplate;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Helmet;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor.Leggings;
+import main.java.pie.ilikepiefoo2.rpgarcade.util.Chat;
 
+/**
+ * Driver Class/Testing Class
+ */
 public class RPGArcade {
     public static void main(String[] args)
     {
@@ -34,7 +36,11 @@ public class RPGArcade {
         player.heal();
     }
 
-
+    /**
+     * Equip an entity with Iron Armor.
+     *
+     * @param entity
+     */
     public static void equipIronArmor(Entity entity)
     {
         Helmet helmet = new Helmet("Iron Helmet");
@@ -51,6 +57,13 @@ public class RPGArcade {
         entity.equip(boots);
     }
 
+    /**
+     * Host a battleRoyal between two entities until one can no longer fight.
+     * 
+     * @param player1
+     * @param player2
+     * @return Winner
+     */
     public static Entity battleRoyal(Entity player1, Entity player2)
     {
         player1.heal();

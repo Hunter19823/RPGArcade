@@ -1,4 +1,4 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor;
+package main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor;
 
 /**
  *

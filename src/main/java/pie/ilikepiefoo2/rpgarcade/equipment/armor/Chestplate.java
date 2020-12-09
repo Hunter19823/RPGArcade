@@ -1,9 +1,8 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor;
+package main.java.pie.ilikepiefoo2.rpgarcade.equipment.armor;
 
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Slot;
-import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
+import main.java.pie.ilikepiefoo2.rpgarcade.equipment.StatModifier;
 
-import static main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Slot.CHEST;
+import static main.java.pie.ilikepiefoo2.rpgarcade.equipment.Slot.CHEST;
 
 /**
  * Chestplate Class

@@ -1,6 +1,10 @@
-package main.java.pie.ilikepiefoo2.RPGArcade.Util;
+package main.java.pie.ilikepiefoo2.rpgarcade.util;
 
+/**
+ * Config Errors.
+ */
 public class ConfigException extends RuntimeException {
+
     public ConfigException()
     {
     }

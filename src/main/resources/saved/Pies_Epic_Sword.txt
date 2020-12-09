@@ -1,4 +1,4 @@
-Type=class main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword
+Type=class main.java.pie.ilikepiefoo2.rpgarcade.equipment.weapons.Sword
 Name=Pie's Epic Sword
 Slot=HANDS
 baseHealthModifier=1.000000
