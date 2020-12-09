@@ -1,0 +1,9 @@
+Type=class main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword
+Name=Pie's Epic Sword.
+Slot=HANDS
+baseHealthModifier=1.000000
+baseDamageModifier=1.500000
+baseDamageReduction=0.000000
+totalDamageModifier=1.000000
+totalHealthModifier=1.000000
+totalDamageReductionModifier=1.000000

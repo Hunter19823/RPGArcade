@@ -1,6 +1,7 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Util;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class ConfigManager {
     public static String loadFile(String path) throws ConfigException
@@ -52,4 +53,23 @@ public class ConfigManager {
             }
         }
     }
+
+    public static String getSafeName(String name)
+    {
+        StringBuilder builder = new StringBuilder();
+        for(char c : name.toCharArray())
+        {
+            if((c >= 'a' && c <='z') || (c >= 'A' && c <= 'Z'))
+            {
+                builder.append(c);
+            }else if(c == ' '){
+                builder.append('_');
+            }
+        }
+        return builder.toString();
+    }
+
+
+
+
 }

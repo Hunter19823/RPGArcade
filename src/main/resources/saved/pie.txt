@@ -3,4 +3,4 @@ Name=pie
 Level=1
 BaseHealth=100.000000
 BaseDamage=10.000000
-CurrentHealth=10.000000
+CurrentHealth=100.000000

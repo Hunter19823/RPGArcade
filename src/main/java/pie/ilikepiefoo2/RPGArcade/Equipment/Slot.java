@@ -16,4 +16,5 @@ public enum Slot {
         this.POSITION = POSITION;
         this.NAME = NAME;
     }
+
 }

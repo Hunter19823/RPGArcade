@@ -18,11 +18,15 @@ public class Equipment{
     public StatModifier equip(StatModifier replacement, Slot slot)
     {
         StatModifier currentPiece = null;
-        if(this.EQUIPMENT[slot.POSITION] != null)
+        if(slot.POSITION == Slot.values().length-1)
         {
-            currentPiece = this.EQUIPMENT[slot.POSITION];
-        }else{
-            this.EQUIPMENT[slot.POSITION] = replacement;
+            PASSIVE.add(replacement);
+        }else {
+            if (this.EQUIPMENT[slot.POSITION] != null) {
+                currentPiece = this.EQUIPMENT[slot.POSITION];
+            } else {
+                this.EQUIPMENT[slot.POSITION] = replacement;
+            }
         }
         return currentPiece;
     }
@@ -50,6 +54,60 @@ public class Equipment{
         for(StatModifier stat : PASSIVE)
         {
             if( stat != null) totalDamage += stat.applyTotalDamageModifier(totalDamage);
+        }
+        return totalDamage;
+    }
+
+    public double getBaseHealthModifiers(Entity entity)
+    {
+
+        double health = entity.getBaseHealth();
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) health += stat.applyBaseHealthModifier(entity);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) health += stat.applyBaseHealthModifier(entity);
+        }
+        return health;
+    }
+
+    public double getTotalHealthModifiers(Entity entity, double totalHealth)
+    {
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) totalHealth += stat.applyTotalHealthModifier(totalHealth);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) totalHealth += stat.applyTotalHealthModifier(totalHealth);
+        }
+        return totalHealth;
+    }
+
+    public double getDamageReduction(Entity entity, double damage)
+    {
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) damage = stat.applyBaseDamageReduction(damage);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) damage = stat.applyBaseDamageReduction(damage);
+        }
+        return damage;
+    }
+
+    public double getTotalDamageReductionModifiers(Entity entity, double totalDamage)
+    {
+        for(StatModifier stat : EQUIPMENT)
+        {
+            if( stat != null) totalDamage = stat.applyTotalDamageReductionModifier(totalDamage);
+        }
+        for(StatModifier stat : PASSIVE)
+        {
+            if( stat != null) totalDamage = stat.applyTotalDamageReductionModifier(totalDamage);
         }
         return totalDamage;
     }
