@@ -15,10 +15,10 @@ public abstract class Entity {
     protected int level = 1;
     protected final Equipment equipment = new Equipment();
 
-    public String getSaveLocation()
+    public static String getSaveLocation(String name)
     {
         StringBuilder builder = new StringBuilder();
-        for(char c : this.name.toCharArray())
+        for(char c : name.toCharArray())
         {
             if((c >= 'a' && c <='z') || (c >= 'A' && c <= 'Z'))
             {
@@ -32,15 +32,16 @@ public abstract class Entity {
 
     public void save()
     {
-        saveToFile(getSaveLocation());
+        saveToFile(getSaveLocation(name));
     }
 
     protected void quickLoad()
     {
         try{
-            loadFromFile(getSaveLocation());
+            loadFromFile(getSaveLocation(name));
         }catch(ConfigException e)
         {
+            e.printStackTrace();
             if(e.getCause().getClass().equals(FileNotFoundException.class)){
                 System.out.println("Could not find \""+name+"\". Now saving for future use.");
                 save();
@@ -140,7 +141,7 @@ public abstract class Entity {
         return currentHealth;
     }
 
-    abstract public Entity loadFromFile(String filePath) throws ConfigException;
+    abstract public void loadFromFile(String filePath) throws ConfigException;
     abstract public void saveToFile(String filePath) throws ConfigException;
     abstract public String getSavingFormat();
 

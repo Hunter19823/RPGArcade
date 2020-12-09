@@ -12,52 +12,50 @@ public class Human extends Entity {
     public Human(String name)
     {
         this.name = name;
-        quickLoad();
+        this.quickLoad();
     }
 
 
     public static Human load(String filePath) throws ConfigException
     {
-        return new Human().loadFromFile(filePath);
+        Human out = new Human();
+        out.loadFromFile(filePath);
+        return out;
     }
 
     @Override
-    public Human loadFromFile(String filePath) throws ConfigException
+    public void loadFromFile(String filePath) throws ConfigException
     {
         String playerDetails = ConfigManager.loadFile(filePath);
         Scanner scanner = new Scanner(playerDetails);
         String[] components;
-        Human temp = null;
         while(scanner.hasNextLine())
         {
             components = scanner.nextLine().split("=");
             if(components[0].equals("Type")) {
-                temp = new Human();
+                if(!components[1].equals(this.getClass().toString()))
+                    throw new ConfigException("This File is the Wrong Type.");
                 continue;
-            }else{
-                if(temp == null)
-                    throw new ConfigException("File not saved correctly.");
             }
             switch(components[0])
             {
                 case "Name":
-                    temp.setName(components[1]);
+                    setName(components[1]);
                     break;
                 case "Level":
-                    temp.setLevel(Integer.parseInt(components[1]));
+                    setLevel(Integer.parseInt(components[1]));
                     break;
                 case "BaseHealth":
-                    temp.setBaseHealth(Double.parseDouble(components[1]));
+                    setBaseHealth(Double.parseDouble(components[1]));
                     break;
                 case "BaseDamage":
-                    temp.setBaseDamage(Double.parseDouble(components[1]));
+                    setBaseDamage(Double.parseDouble(components[1]));
                     break;
                 case "CurrentHealth":
-                    temp.setCurrentHealth(Double.parseDouble(components[1]));
+                    setCurrentHealth(Double.parseDouble(components[1]));
                     break;
             }
         }
-        return temp;
     }
 
     @Override
