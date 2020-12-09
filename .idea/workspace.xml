@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Armor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Boots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Boots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Chestplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Chestplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Helmet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Helmet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Leggings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Leggings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Sword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/weapons/Weapon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +84,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="34795000" />
+      <workItem from="1607471742808" duration="35025000" />
     </task>
     <servers />
   </component>
