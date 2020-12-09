@@ -2,8 +2,10 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Equipment;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
+import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public abstract class Entity {
     protected String name = "Default";
@@ -13,11 +15,37 @@ public abstract class Entity {
     protected int level = 1;
     protected final Equipment equipment = new Equipment();
 
-    private void levelUp()
+    public String getSaveLocation()
     {
-        this.level++;
-        this.baseHealth += level*Math.random()*10;
-        this.baseDamage += level*Math.random()*7.5;
+        StringBuilder builder = new StringBuilder();
+        for(char c : this.name.toCharArray())
+        {
+            if((c >= 'a' && c <='z') || (c >= 'A' && c <= 'Z'))
+            {
+                builder.append(c);
+            }else if(c == ' '){
+                builder.append('_');
+            }
+        }
+        return "src/main/resources/saved/"+builder.toString()+".txt";
+    }
+
+    public void save()
+    {
+        saveToFile(getSaveLocation());
+    }
+
+    protected void quickLoad()
+    {
+        try{
+            loadFromFile(getSaveLocation());
+        }catch(ConfigException e)
+        {
+            if(e.getCause().getClass().equals(FileNotFoundException.class)){
+                System.out.println("Could not find \""+name+"\". Now saving for future use.");
+                save();
+            }
+        }
     }
 
     public String getName()
@@ -30,6 +58,23 @@ public abstract class Entity {
         this.name = name;
     }
 
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public void setLevel(int level)
+    {
+        this.level = level;
+    }
+
+    private void levelUp()
+    {
+        this.level++;
+        this.baseHealth += level*Math.random()*10;
+        this.baseDamage += level*Math.random()*7.5;
+    }
+
     public double getBaseHealth()
     {
         return baseHealth;
@@ -40,14 +85,19 @@ public abstract class Entity {
         this.baseHealth = baseHealth;
     }
 
+    public double getCurrentHealth()
+    {
+        return this.currentHealth;
+    }
+
     public void setCurrentHealth(double currentHealth)
     {
         this.currentHealth = currentHealth;
     }
 
-    public double getCurrentHealth()
+    public double getMaxHealth()
     {
-        return this.currentHealth;
+        return 0;
     }
 
     public double getBaseDamage()
@@ -90,11 +140,23 @@ public abstract class Entity {
         return currentHealth;
     }
 
-    abstract protected void load(File file);
+    abstract public Entity loadFromFile(String filePath) throws ConfigException;
+    abstract public void saveToFile(String filePath) throws ConfigException;
+    abstract public String getSavingFormat();
 
     public String toString()
     {
         return String.format("%s (%dL)",name,level);
+    }
+
+    public String getStats()
+    {
+        return String.format("Name: %s%nLevel: %d%nHealth: %,.2f / %,.2f%nDamage: %,.2f",name,level,currentHealth,baseHealth,baseDamage);
+    }
+
+    public void displayStats()
+    {
+        System.out.println(getStats());
     }
 
 }
