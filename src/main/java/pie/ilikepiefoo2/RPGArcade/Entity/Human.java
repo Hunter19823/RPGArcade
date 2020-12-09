@@ -1,8 +1,10 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
 
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Human extends Entity {
@@ -15,8 +17,12 @@ public class Human extends Entity {
         this.quickLoad();
     }
 
+    public void reload()
+    {
+        this.quickLoad();
+    }
 
-    public static Human load(String filePath) throws ConfigException
+    public static Human load(String filePath) throws ConfigException, FileNotFoundException
     {
         Human out = new Human();
         out.loadFromFile(filePath);
@@ -24,7 +30,7 @@ public class Human extends Entity {
     }
 
     @Override
-    public void loadFromFile(String filePath) throws ConfigException
+    public void loadFromFile(String filePath) throws ConfigException, FileNotFoundException
     {
         String playerDetails = ConfigManager.loadFile(filePath);
         Scanner scanner = new Scanner(playerDetails);
@@ -54,6 +60,16 @@ public class Human extends Entity {
                 case "CurrentHealth":
                     setCurrentHealth(Double.parseDouble(components[1]));
                     break;
+                case "Equipment":
+                    try {
+                        StatModifier statModifier = StatModifier.loadStatModifiers(components[1]);
+
+                        equipment.equip(statModifier, statModifier.getSlot());
+                    }catch(FileNotFoundException e)
+                    {
+                        System.out.println("Error trying to load equipment by the name of: \""+components[1]+"\". File does not exist.");
+                    }
+                    break;
             }
         }
     }
@@ -79,6 +95,6 @@ public class Human extends Entity {
                 this.level,
                 this.baseHealth,
                 this.baseDamage,
-                this.currentHealth);
+                this.currentHealth)+equipment.getSavingFormat();
     }
 }

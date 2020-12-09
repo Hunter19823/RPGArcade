@@ -16,33 +16,33 @@ public abstract class StatModifier {
     protected double baseHealthModifier = 1;
     protected double baseDamageModifier = 1;
     protected double baseDamageReduction = 0;
-    protected double totalDamageModifier = 1;
-    protected double totalHealthModifier = 1;
-    protected double totalDamageReductionModifier = 1;
+    protected double totalDamageModifier = 0;
+    protected double totalHealthModifier = 0;
+    protected double totalDamageReductionModifier = 0;
 
     public double applyBaseDamageModifier(Entity entity)
     {
-        return entity.getBaseDamage()*baseDamageModifier;
+        return entity.getBaseDamage()*baseDamageModifier - entity.getBaseDamage();
     }
     public double applyBaseHealthModifier(Entity entity)
     {
-        return entity.getBaseHealth()*baseHealthModifier;
+        return entity.getBaseHealth()*baseHealthModifier - entity.getBaseHealth();
     }
     public double applyBaseDamageReduction(double totalDamage)
     {
-        return totalDamage-baseDamageReduction;
+        return -baseDamageReduction;
     }
     public double applyTotalDamageModifier(double totalDamage)
     {
-        return totalDamage*totalDamageModifier;
+        return totalDamage * totalDamageModifier;
     }
     public double applyTotalHealthModifier(double totalHealth)
     {
-        return totalHealth*totalHealthModifier;
+        return totalHealth * totalHealthModifier;
     }
     public double applyTotalDamageReductionModifier(double totalDamage)
     {
-        return totalDamage* totalDamageReductionModifier;
+        return totalDamage * totalDamageReductionModifier;
     }
 
     public String getName()
@@ -68,6 +68,7 @@ public abstract class StatModifier {
     public void setBaseHealthModifier(double baseHealthModifier)
     {
         this.baseHealthModifier = baseHealthModifier;
+        save();
     }
 
     public double getBaseDamageModifier()
@@ -78,6 +79,7 @@ public abstract class StatModifier {
     public void setBaseDamageModifier(double baseDamageModifier)
     {
         this.baseDamageModifier = baseDamageModifier;
+        save();
     }
 
     public double getTotalDamageModifier()
@@ -88,6 +90,7 @@ public abstract class StatModifier {
     public void setTotalDamageModifier(double totalDamageModifier)
     {
         this.totalDamageModifier = totalDamageModifier;
+        save();
     }
 
     public double getBaseDamageReduction()
@@ -98,6 +101,7 @@ public abstract class StatModifier {
     public void setBaseDamageReduction(double baseDamageReduction)
     {
         this.baseDamageReduction = baseDamageReduction;
+        save();
     }
 
     public double getTotalDamageReductionModifier()
@@ -108,6 +112,7 @@ public abstract class StatModifier {
     public void setTotalDamageReductionModifier(double totalDamageReductionModifier)
     {
         this.totalDamageReductionModifier = totalDamageReductionModifier;
+        save();
     }
 
     public double getTotalHealthModifier()
@@ -118,6 +123,7 @@ public abstract class StatModifier {
     public void setTotalHealthModifier(double totalHealthModifier)
     {
         this.totalHealthModifier = totalHealthModifier;
+        save();
     }
 
     public static String getSaveLocation(StatModifier stat)
@@ -125,26 +131,27 @@ public abstract class StatModifier {
         return SAVE_LOCATION+ConfigManager.getSafeName(stat.getName())+".txt";
     }
 
+
     public static String getSaveLocation(String name)
     {
         return SAVE_LOCATION+ConfigManager.getSafeName(name)+".txt";
     }
 
-    public static StatModifier loadStatModifiers(String equipmentName) throws ConfigException
+    public static StatModifier loadStatModifiers(String equipmentName) throws ConfigException, FileNotFoundException
     {
         String toolDetails = ConfigManager.loadFile(getSaveLocation(equipmentName));
 
         StatModifier stat = null;
 
-        String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")).split("=");
+        String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")-1).split("=");
 
         if(components[0].equals("Type")) {
-            if(components[1].equals(Weapon.SWORD.CLASS_NAME))
+            if(Weapon.SWORD.CLASS_NAME.equals(components[1]))
             {
                 stat = new Sword();
             }
             else{
-                throw new ConfigException("Equipment Type not Supported: \""+components[1]+"\"");
+                throw new ConfigException("Equipment Type not Supported: "+components[1]+"");
             }
         }
 
@@ -196,12 +203,10 @@ public abstract class StatModifier {
     {
         try{
             loadStatModifiers(ConfigManager.loadFile(getSaveLocation(this.name)), this);
-        }catch(ConfigException e)
+        }catch(FileNotFoundException e)
         {
-            if(e.getCause().getClass().equals(FileNotFoundException.class)){
-                System.out.println("Could not find \""+name+"\". Now saving for future use...");
-                save();
-            }
+            System.out.println("Could not find \""+name+"\". Now saving for future use...");
+            save();
         }
     }
 
@@ -242,25 +247,25 @@ public abstract class StatModifier {
     public String getStats()
     {
         String output = String.format(
-                "Class: %s%n" +
-                "Name: %s%n" +
-                "Slot: %s%n" ,
-                this.getClass().getSimpleName(),
+                "\tName: %s%n" +
+                "\tClass: %s%n" +
+                "\tSlot: %s%n" ,
                 this.name,
+                this.getClass().getSimpleName(),
                 this.slot.NAME
         );
         if(baseHealthModifier != 1)
-            output += String.format("Base Health Bonus: %,.2f%%%n",baseHealthModifier*100);
+            output += String.format("\tBase Health Bonus: %,.2f%%%n",(baseHealthModifier-1)*100);
         if(baseDamageModifier != 1)
-            output += String.format("Base Damage Bonus: %,.2f%%%n",baseDamageModifier*100);
+            output += String.format("\tBase Damage Bonus: %,.2f%%%n",(baseDamageModifier-1)*100);
         if(baseDamageReduction != 0)
-            output += String.format("Damage Reduction Bonus: %,.2f Damage%n",baseDamageModifier*-1);
-        if(totalDamageModifier != 1)
-            output += String.format("Stackable Damage Bonus: %,.2f%%%n",totalDamageModifier*100);
-        if(totalHealthModifier != 1)
-            output += String.format("Stackable Health Bonus: %,.2f%%%n",totalHealthModifier*100);
-        if(totalDamageReductionModifier != 1)
-            output += String.format("Stackable Damage Reduction Bonus: %,.2f%%%n",totalDamageReductionModifier*100);
+            output += String.format("\tDamage Reduction Bonus: %,.2f Damage%n",baseDamageModifier*-1);
+        if(totalDamageModifier != 0)
+            output += String.format("\tStackable Damage Bonus: %,.2f%%%n",(totalDamageModifier)*100);
+        if(totalHealthModifier != 0)
+            output += String.format("\tStackable Health Bonus: %,.2f%%%n",(totalHealthModifier)*100);
+        if(totalDamageReductionModifier != 0)
+            output += String.format("\tStackable Damage Reduction Bonus: %,.2f%%%n",(totalDamageReductionModifier)*100);
 
         return output;
     }

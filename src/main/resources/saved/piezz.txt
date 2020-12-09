@@ -1,6 +1,0 @@
-Type=class main.java.pie.ilikepiefoo2.RPGArcade.Entity.Human
-Name=piezz
-Level=1
-BaseHealth=100.000000
-BaseDamage=10.000000
-CurrentHealth=100.000000

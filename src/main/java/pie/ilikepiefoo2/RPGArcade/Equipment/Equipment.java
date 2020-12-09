@@ -2,6 +2,7 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
+import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,8 @@ public class Equipment{
             PASSIVE.add(replacement);
         }else {
             if (this.EQUIPMENT[slot.POSITION] != null) {
+                if(this.EQUIPMENT[slot.POSITION].equals(this.EQUIPMENT[slot.POSITION]))
+                    return null;
                 currentPiece = this.EQUIPMENT[slot.POSITION];
             } else {
                 this.EQUIPMENT[slot.POSITION] = replacement;
@@ -60,7 +63,6 @@ public class Equipment{
 
     public double getBaseHealthModifiers(Entity entity)
     {
-
         double health = entity.getBaseHealth();
         for(StatModifier stat : EQUIPMENT)
         {
@@ -125,6 +127,28 @@ public class Equipment{
     public StatModifier getWeapon()
     {
         return EQUIPMENT[Slot.HANDS.POSITION];
+    }
+
+    public String getSavingFormat()
+    {
+        String output = "";
+        for(StatModifier stat : EQUIPMENT)
+            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.name));
+        for(StatModifier stat : PASSIVE)
+            if(stat != null) output+=String.format("Equipment=%s%n", ConfigManager.getSafeName(stat.name));
+        return output;
+    }
+
+    public String getEquipmentStats()
+    {
+        StringBuilder output = new StringBuilder();
+        output.append("Equipment: \n");
+        for(StatModifier stat : EQUIPMENT)
+            if( stat != null) output.append(stat.getStats());
+        output.append("Passive Buffs: \n");
+        for(StatModifier stat : PASSIVE)
+            if( stat != null) output.append(stat.getStats());
+        return output.toString();
     }
 }
 

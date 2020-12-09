@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ConfigManager {
-    public static String loadFile(String path) throws ConfigException
+    public static String loadFile(String path) throws ConfigException, FileNotFoundException
     {
         /*
             Try to open the file at filepath
@@ -12,12 +12,7 @@ public class ConfigManager {
             generic config error.
          */
         FileReader fileReader = null;
-        try{
-            fileReader = new FileReader(path);
-        }catch(FileNotFoundException e)
-        {
-            throw new ConfigException(e);
-        }
+        fileReader = new FileReader(path);
         /*
             Attempt to read the file
             otherwise throw a
@@ -59,7 +54,7 @@ public class ConfigManager {
         StringBuilder builder = new StringBuilder();
         for(char c : name.toCharArray())
         {
-            if((c >= 'a' && c <='z') || (c >= 'A' && c <= 'Z'))
+            if((c >= 'a' && c <='z') || (c >= 'A' && c <= 'Z') || c == '_')
             {
                 builder.append(c);
             }else if(c == ' '){

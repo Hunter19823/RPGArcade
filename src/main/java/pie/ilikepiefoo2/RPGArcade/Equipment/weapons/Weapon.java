@@ -1,7 +1,7 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons;
 
 public enum Weapon {
-    SWORD(Sword.class);
+    SWORD(Sword.class.toString());
 
     public final String CLASS_NAME;
 
