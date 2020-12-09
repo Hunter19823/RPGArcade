@@ -14,10 +14,10 @@ import java.util.Scanner;
  * The mother class of all entities.
  */
 public abstract class Entity {
-    // The location where entities are stored.
+    // The location where all entities are stored.
     public static final String SAVE_LOCATION = "src/main/resources/saved/";
 
-    // Protected Fields.
+    // Protected Fields used by all entities.
     protected String name = "Default";
     protected double baseHealth = 100;
     protected double currentHealth = baseHealth;
@@ -26,6 +26,26 @@ public abstract class Entity {
 
     // All entities have an Equipment.
     protected final Equipment equipment = new Equipment();
+
+    /**
+     * Manual Constructor.
+     * Will not save until either:
+     * 1. Something has been equipped.
+     * 2. Entity has leveled up.
+     */
+    public Entity(){}
+
+    /**
+     * Auto-Loaded Constructor.
+     * @param name Will load any entities
+     *             with this name, otherwise
+     *             it will create one itself.
+     */
+    public Entity(String name)
+    {
+        this.name = name;
+        quickLoad();
+    }
 
     /**
      * Get the name of the Entity
