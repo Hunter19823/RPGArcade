@@ -2,6 +2,7 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
 
 /**
  * Human Class.
+ * Child to the abstract class Entity
  */
 public class Human extends Entity {
 
@@ -17,7 +18,8 @@ public class Human extends Entity {
      * Auto-Loaded Constructor.
      * @param name Will load any entities
      *             with this name, otherwise
-     *             it will create one itself.
+     *             it will create one itself
+     *             with it's given name.
      */
     public Human(String name)
     {

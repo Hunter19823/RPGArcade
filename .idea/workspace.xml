@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Human.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Armor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Boots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Boots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Chestplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Chestplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Helmet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Helmet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Leggings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/armor/Leggings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="34250000" />
+      <workItem from="1607471742808" duration="34795000" />
     </task>
     <servers />
   </component>
@@ -119,10 +124,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1876" height="316" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1607502847988" />
-    <state x="616" y="265" key="run.anything.popup" timestamp="1607500983136">
+    <state x="616" y="265" key="run.anything.popup" timestamp="1607506688694">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="616" y="265" key="run.anything.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607500983136" />
+    <state x="616" y="265" key="run.anything.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1607506688694" />
     <state x="623" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1607502355658">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>

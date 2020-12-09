@@ -13,7 +13,7 @@ public enum Entities {
     public final Class CLASS;
 
     /**
-     *
+     * Entities Enum Constructor
      * @param CLASS The class this Enum Represents.
      */
     Entities(Class CLASS)
