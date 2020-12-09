@@ -1,12 +1,14 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Armor;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Sword;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public abstract class StatModifier {
@@ -19,6 +21,14 @@ public abstract class StatModifier {
     protected double totalDamageModifier = 0;
     protected double totalHealthModifier = 0;
     protected double totalDamageReductionModifier = 0;
+
+    public StatModifier() { }
+
+    public StatModifier(String name)
+    {
+        this.name = name;
+        quickLoad();
+    }
 
     public double applyBaseDamageModifier(Entity entity)
     {
@@ -146,13 +156,42 @@ public abstract class StatModifier {
         String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")-1).split("=");
 
         if(components[0].equals("Type")) {
-            if(Weapon.SWORD.CLASS_NAME.equals(components[1]))
-            {
-                stat = new Sword();
+            for(Weapon weapon : Weapon.values()){
+                if(weapon.CLASS.toString().equals(components[1]))
+                {
+                    try {
+                        stat = (StatModifier) weapon.CLASS.getConstructor().newInstance();
+                        break;
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            else{
+            for(Armor armor : Armor.values()){
+                if(components[1].equals(armor.CLASS.toString()))
+                {
+                    try {
+                        stat = (StatModifier) armor.CLASS.getConstructor().newInstance();
+                        break;
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(stat == null)
                 throw new ConfigException("Equipment Type not Supported: "+components[1]+"");
-            }
         }
 
         loadStatModifiers(toolDetails,stat);

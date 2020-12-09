@@ -12,8 +12,7 @@ public class Sword extends StatModifier {
 
     public Sword(String name)
     {
-        this.name = name;
+        super(name);
         this.slot = Slot.HANDS;
-        quickLoad();
     }
 }

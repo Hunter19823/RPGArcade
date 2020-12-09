@@ -1,12 +1,17 @@
 package main.java.pie.ilikepiefoo2.RPGArcade.Entity;
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Equipment;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.Slot;
 import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.StatModifier;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Armor;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigException;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Scanner;
 
 public abstract class Entity {
     public static final String SAVE_LOCATION="src/main/resources/saved/";
@@ -109,9 +114,103 @@ public abstract class Entity {
         return currentHealth;
     }
 
-    abstract public void loadFromFile(String filePath) throws ConfigException, FileNotFoundException;
-    abstract public void saveToFile(String filePath) throws ConfigException;
-    abstract public String getSavingFormat();
+    public static Entity loadEntity(String equipmentName) throws ConfigException, FileNotFoundException
+    {
+        String toolDetails = ConfigManager.loadFile(getSaveLocation(equipmentName));
+
+        Entity ent = null;
+
+        String[] components = toolDetails.substring(0,toolDetails.indexOf("\n")-1).split("=");
+
+        if(components[0].equals("Type")) {
+            for(Entities entity : Entities.values()){
+                if(entity.CLASS.toString().equals(components[1]))
+                {
+                    try {
+                        ent = (Entity) entity.CLASS.getConstructor().newInstance();
+                        break;
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(ent == null)
+                throw new ConfigException("Equipment Type not Supported: "+components[1]+"");
+        }
+
+        loadEntity(toolDetails,ent);
+
+        return ent;
+    }
+
+    private static Entity loadEntity(String blueprint, Entity entity) throws ConfigException
+    {
+        Scanner scanner = new Scanner(blueprint);
+        String[] components;
+
+        while(scanner.hasNextLine())
+        {
+            components = scanner.nextLine().split("=");
+            switch(components[0])
+            {
+                case "Name":
+                    entity.setName(components[1]);
+                    break;
+                case "Level":
+                    entity.setLevel(Integer.parseInt(components[1]));
+                    break;
+                case "BaseHealth":
+                    entity.setBaseHealth(Double.parseDouble(components[1]));
+                    break;
+                case "BaseDamage":
+                    entity.setBaseDamage(Double.parseDouble(components[1]));
+                    break;
+                case "CurrentHealth":
+                    entity.setCurrentHealth(Double.parseDouble(components[1]));
+                    break;
+                case "Equipment":
+                    try {
+                        StatModifier statModifier = StatModifier.loadStatModifiers(components[1]);
+
+                        entity.equipment.equip(statModifier, statModifier.getSlot());
+                    }catch(FileNotFoundException e)
+                    {
+                        System.out.println("Error trying to load equipment by the name of: \""+components[1]+"\". File does not exist.");
+                    }
+                    break;
+            }
+        }
+        return entity;
+    }
+
+    public void saveToFile(String filePath) throws ConfigException
+    {
+        ConfigManager.saveFile(filePath,getSavingFormat());
+    }
+
+
+    public String getSavingFormat()
+    {
+        return String.format(
+                "Type=%s%n" +
+                        "Name=%s%n" +
+                        "Level=%d%n" +
+                        "BaseHealth=%f%n" +
+                        "BaseDamage=%f%n" +
+                        "CurrentHealth=%f%n",
+                this.getClass().toString(),
+                this.name,
+                this.level,
+                this.baseHealth,
+                this.baseDamage,
+                this.currentHealth)+equipment.getSavingFormat();
+    }
 
     public static String getSaveLocation(String name)
     {
@@ -124,10 +223,15 @@ public abstract class Entity {
     }
 
 
+    public void reload()
+    {
+        this.quickLoad();
+    }
+
     protected void quickLoad()
     {
         try{
-            loadFromFile(getSaveLocation(name));
+            loadEntity(ConfigManager.loadFile(getSaveLocation(this.name)), this);
         }catch(FileNotFoundException e)
         {
             System.out.println("Could not find \""+name+"\". Now saving for future use.");

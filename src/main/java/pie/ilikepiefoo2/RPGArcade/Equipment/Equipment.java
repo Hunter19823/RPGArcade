@@ -2,8 +2,10 @@ package main.java.pie.ilikepiefoo2.RPGArcade.Equipment;
 
 
 import main.java.pie.ilikepiefoo2.RPGArcade.Entity.Entity;
+import main.java.pie.ilikepiefoo2.RPGArcade.Equipment.weapons.Weapon;
 import main.java.pie.ilikepiefoo2.RPGArcade.Util.ConfigManager;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class Equipment{
@@ -33,6 +35,7 @@ public class Equipment{
         }
         return currentPiece;
     }
+
 
     public double getBaseDamageModifiers(Entity entity)
     {

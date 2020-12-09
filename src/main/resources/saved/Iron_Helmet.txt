@@ -1,0 +1,9 @@
+Type=class main.java.pie.ilikepiefoo2.RPGArcade.Equipment.armor.Helmet
+Name=Iron Helmet
+Slot=HEAD
+baseHealthModifier=1.000000
+baseDamageModifier=1.000000
+baseDamageReduction=1.000000
+totalDamageModifier=0.000000
+totalHealthModifier=0.000000
+totalDamageReductionModifier=0.000000
