@@ -19,16 +19,17 @@ public class RPGArcade {
         //new Sword("Pie's Epic Sword").setBaseHealthModifier(1);
         Human player = new Human("Pie");
         player.displayFullStats();
-        
+
 
     }
 
     public static void simulateFight()
     {
-        Human player = new Human("Pie");
+        Human player = new Human("Player 1");
+        player.strip();
         equipIronArmor(player);
         Human opponent = new Human();
-        opponent.setName("Big Beefy Mother Fucker");
+        opponent.setName("Big Beefy Mother Hubber");
         opponent.setBaseHealth(200);
         opponent.setBaseDamage(20);
         Chat.CHAT.println("The winner of this Battle Royal is: "+battleRoyal(opponent,player));

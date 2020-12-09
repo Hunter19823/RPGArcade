@@ -4,16 +4,6 @@
     <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/RPGArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/RPGArcade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/StatModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/StatModifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/armor/Armor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/weapons/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/rpgarcade/equipment/weapons/Weapon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Boots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Boots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Chestplate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Chestplate.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Helmet.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Helmet.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Iron_Leggings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Iron_Leggings.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="40408000" />
+      <workItem from="1607471742808" duration="40525000" />
     </task>
     <servers />
   </component>
