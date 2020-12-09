@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f26216a-a19c-4018-a7cc-c613f3d8c0f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Util/Chat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entities.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/Slot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/StatModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/Equipment/StatModifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/RPGArcade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pie/ilikepiefoo2/RPGArcade/RPGArcade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/saved/Pie.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607471738869</updated>
-      <workItem from="1607471742808" duration="30846000" />
+      <workItem from="1607471742808" duration="33803000" />
     </task>
     <servers />
   </component>
